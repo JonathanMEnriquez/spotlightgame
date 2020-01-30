@@ -72,15 +72,21 @@ class GameProvider extends Component {
             gameHistoryRef.on('value', (snap) => {
                 const val = snap.val();
                 if (val) {
-                    this.setState({history: Object.values(snap.val())});
+                    const values = Object.values(snap.val());
+                    const sorted = values.sort((a, b) => {
+                        const valA = new Date(a.date).getTime();
+                        const valB = new Date(b.date).getTime();
+                        return valB - valA;
+                    });
+                    this.setState({history: sorted});
                 }
             });
         }
     }
     resetGame() {
         this.setState({gameMode: this.state.gameModes.PREGAME, players: [], history: [], img: this.getImageInfo()});
-        this.getPlayerInfo();
-        this.getGameHistory();
+        // this.getPlayerInfo();
+        // this.getGameHistory();
     }
 }
  
