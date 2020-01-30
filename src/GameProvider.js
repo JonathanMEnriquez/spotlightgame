@@ -47,8 +47,9 @@ class GameProvider extends Component {
     getImageInfo() {
         // const entry = data[Math.floor(Math.random() * data.length)];
         // if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
-        //     this.getImageInfo();
+        //     return this.getImageInfo();
         // }
+        // return entry;
         //for testing
         return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
     }
