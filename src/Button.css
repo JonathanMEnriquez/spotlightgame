@@ -37,3 +37,9 @@ div > .button:hover {
     background: white;
     box-shadow: 0 0 8px green;
 }
+
+div > .disabled {
+    pointer-events: none;
+    background: rgb(0, 0, 0, 0.2);
+    border: none;
+}

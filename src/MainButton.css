@@ -1,12 +1,12 @@
 .main-button {
-    width: 136px;
-    padding: 4px 0;
+    width: 20vw;
+    padding: 2vh 0;
     text-align: center;
     background: rgb(28, 133, 160);
     border: 1px solid gray;
     border-radius: 8px;
     box-shadow: 2px 2px 4px gray;
-    font-size: 32px;
+    font-size: 3vw;
     color: lightgray;
     cursor: pointer;
 }

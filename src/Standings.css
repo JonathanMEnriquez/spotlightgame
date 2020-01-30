@@ -1,6 +1,6 @@
 .standings {
     display: inline-block;
-    width: 70vw;
+    width: 100%;
     text-align: right;
     padding-top: 8vh;
 }

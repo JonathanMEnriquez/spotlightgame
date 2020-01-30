@@ -16,11 +16,11 @@ class Button extends Component {
                     />
                 }
                 {!icon &&
-                    <div
-                        className="button"
+                    <button
+                        className={disabled ? 'button disabled' : 'button'}
                         onClick={clickHandler}
                         disabled={disabled}
-                    >{text}</div>
+                    >{text}</button>
                 }
             </div>
         );

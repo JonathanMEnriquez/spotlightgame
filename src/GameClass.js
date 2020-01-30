@@ -3,7 +3,7 @@ class Game {
         this.location = location;
         this.imgSrc = imgSrc;
         this.winner = winner;
-        this.date = new Date();
+        this.date = new Date().toLocaleDateString();
     }
 }
 
