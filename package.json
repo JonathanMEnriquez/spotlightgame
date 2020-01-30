@@ -1,20 +1,32 @@
 {
-  "name": "display",
+  "name": "spotlight",
   "version": "0.1.0",
   "private": true,
+  "description": "A guessing game for travel lovers.",
+  "author": "github.com/JonathanMEnriquez",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.3.2",
+    "@testing-library/user-event": "7.1.2",
+    "cross-env": "7.0.0",
+    "electron-is-dev": "1.1.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
     "react-scripts": "3.3.0"
   },
+  "main": "public/electron.js",
+  "build": {
+    "appId": "spotlight.menu"
+  },
+  "homepage": "./",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "build": "npm run react-build && electron-builder",
+    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +42,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "5.1.0",
+    "electron": "7.1.10",
+    "electron-builder": "22.3.2",
+    "wait-on": "4.0.0",
+    "firebase": "7.7.0"
   }
 }

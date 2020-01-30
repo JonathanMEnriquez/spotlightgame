@@ -1,0 +1,50 @@
+.pregame {
+    padding: 10px 24px;
+    overflow: auto;
+}
+
+.footer {
+    font-style: italic;
+    color: rgb(184, 183, 183);
+    font-size: 2vw;
+    padding-top: 12vh;
+    padding-left: 2vw;
+}
+
+.header {
+    display: block;
+    padding: 8vh 2vw;
+}
+
+.header > img {
+    width: 6vw;
+    display: inline-block;
+}
+
+.header > h1 {
+    font-family: 'Bebas Neue', cursive;
+    margin: 0;
+    font-size: 7vw;
+    display: inline-block;
+    padding-left: 2vw;
+}
+
+.header > h2 {
+    font-family: 'Bangers', cursive;
+    font-weight: normal;
+    padding-left: 40%;
+    padding-top: 0;
+    margin: -8px 0 0;
+    font-size: 3vw;
+    color: lightgray;
+}
+
+.button-div {
+    padding: 15vh 6vw 0;
+    display: inline-block;
+}
+
+.standings-container {
+    display: inline-block;
+    width: 75%;
+}

@@ -1,0 +1,39 @@
+.encasing-button-div {
+    display: inline-block;
+}
+
+div > .button-icon {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    padding: 2px;
+    margin-right: 8px;
+    border: 2px solid gray;
+    border-radius: 8px;
+    display: inline;
+    background: white;
+}
+
+div > .button {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4px;
+    height: 36px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 1vw;
+    border: 2px solid gray;
+    border-radius: 8px;
+    display: inline;
+    background: black;
+    color: white;
+    width: 10vw;
+    min-width: 120px;
+}
+
+div > .button:hover {
+    color: black;
+    background: white;
+    box-shadow: 0 0 8px green;
+}
