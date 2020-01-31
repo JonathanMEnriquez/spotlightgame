@@ -14,12 +14,13 @@ class Postgame extends Component {
     
     declareWinner(ev) {
         this.setState({winnerDeclared: true});
+        const { user } = this.context;
         const winner = ev.target.textContent;
         this.setState({congrats: `Congratulations to ${winner} for the Yuge win!`});
         const { img, players } = this.context;
-        const gamesRef = firebase.database().ref('games');
+        const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
-        const winnerRef = firebase.database().ref('players/' + winningPlayerInfo._id);
+        const winnerRef = firebase.database().ref(user + '/players/' + winningPlayerInfo._id);
         const newGame = new Game(img.caption, img.img_src, winner);
         gamesRef.push(newGame);
         winnerRef.set({ name: winningPlayerInfo.name,  wins: winningPlayerInfo.wins += 1 });

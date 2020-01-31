@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import GameProvider from './GameProvider';
-import GameSwitch from './GameSwitch';
+import Loading from './Loading';
 
 class App extends  Component {
 
   render() {
     return (
-      <GameProvider>
-        <GameSwitch />
-      </GameProvider>
+      <Loading />
     );
   }
 }
