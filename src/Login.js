@@ -30,17 +30,21 @@ class Login extends Component {
         );
     }
 
-    async loginOrRegister() {
+    loginOrRegister() {
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-pwd').value;
         // const toRun = this.state.registerMode
         //     ? auth.createUserWithEmailAndPassword
         //     : auth.signInWithEmailAndPassword;
-        const res = await auth.signInWithEmailAndPassword(email, password);
 
-        if (res.user) {
-            this.props.setUser(res.user);
-        }
+        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .then(async () => {
+                const res = await auth.signInWithEmailAndPassword(email, password);
+
+                if (res.user) {
+                    this.props.setUser(res.user);
+                }
+            });
     }
 }
 

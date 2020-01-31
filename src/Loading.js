@@ -16,23 +16,20 @@ class Loading extends Component {
     }
 
     componentDidMount() {
-        const storedUser = this.userIsStored();
-        if (!storedUser) {
-            this.setState({displayLogin: true});
-        } else {
-            this.userIsLoggedIn(storedUser);
-        }
+        this.checkUserStatus();
     }
 
-    userIsStored() {
-        const localStorage = window.localStorage;
-        const userInfo = localStorage.getItem('firebaseUser');
-        return userInfo !== undefined || userInfo !== null ? JSON.parse(userInfo) : null;
+    checkUserStatus() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.userIsLoggedIn(user);
+            } else {
+                this.setState({displayLogin: true});
+            }
+        });
     }
 
     userIsLoggedIn(user) {
-        const localStorage = window.localStorage;
-        localStorage.setItem('firebaseUser', JSON.stringify(user));
         this.setState({displayLogin: false});
         this.setState({loggedIn: true});
         this.setState({user: user.uid});

@@ -33,10 +33,10 @@ class LiveGame extends Component {
         this.setState({timeout: null});
     }
     render() {
-        const { setToPostgameMode, getNewImage } = this.context;
+        const { setToPostgameMode, skipImage } = this.context;
         const btnGroupEntries = [
             {alt: 'globe', src: globe, clickHandler: setToPostgameMode},
-            {alt: 'cancel/skip', src: cancel, clickHandler: getNewImage}
+            {alt: 'cancel/skip', src: cancel, clickHandler: skipImage}
         ]
         return ( 
             <div className="footer-actions">
