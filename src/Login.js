@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Firebase, { auth, provider } from './firebase';
 import './Login.css';
 import GameContext from './GameContext';
 import MainButton from './MainButton';
+import firebase, { auth } from './firebase';
 
 class Login extends Component {
     state = { 
         registerMode: false
     }
-    render() { 
+    render() {
         return ( 
             <div className="login-container">
                 <h3>{this.state.registerMode ? 'Register' : 'Sign in'}</h3>
@@ -23,21 +23,28 @@ class Login extends Component {
                         <MainButton actionTitle="Submit" simple={true} clickHandler={this.loginOrRegister.bind(this)} />
                     </div>
                 </div>
-                <p className="type-link"
+                {/* <p className="type-link"
                     onClick={() => this.setState({registerMode: !this.state.registerMode})}
-                    >{this.state.registerMode ? 'Already Registered?' : 'New User?'}</p>
+                    >{this.state.registerMode ? 'Already Registered?' : 'New User?'}</p> */}
             </div>
         );
     }
 
     loginOrRegister() {
-        const email = document.getElementById('login-email').textContent;
-        const password = document.getElementById('login-pwd').textContent;
-        const toRun = this.state.registerMode
-            ? auth.createUserWithEmailAndPassword
-            : auth.signInWithEmailAndPassword;
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-pwd').value;
+        // const toRun = this.state.registerMode
+        //     ? auth.createUserWithEmailAndPassword
+        //     : auth.signInWithEmailAndPassword;
 
-        console.log(email, password, toRun);
+        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .then(async () => {
+                const res = await auth.signInWithEmailAndPassword(email, password);
+
+                if (res.user) {
+                    this.props.setUser(res.user);
+                }
+            });
     }
 }
 

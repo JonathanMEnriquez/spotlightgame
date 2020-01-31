@@ -53,7 +53,7 @@ class Pregame extends Component {
                                 <td>{en.date}</td>
                                 <td>{en.location}</td>
                                 <td>{en.winner}</td>
-                                <td><a href={en.imgSrc}>Link</a></td>
+                                <td><a target="_blank" rel="noopener noreferrer" href={en.imgSrc}>Link</a></td>
                             </tr>
                         )
                         })}
@@ -77,15 +77,6 @@ class Pregame extends Component {
 
     showHistory() {
         this.setState({showHistory: true});
-    }
-
-    login(setUser) {
-        // auth.createUserWithEmailAndPassword()        
-        // auth.getRedirectResult()
-        //     .then(result => {
-        //         console.log(result);
-        //         // setUser(result.user);
-        //     });
     }
 }
 

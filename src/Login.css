@@ -10,7 +10,9 @@
 
 .login-container > .login {
     padding: 2vh 2vw;
-    width: 50%;
+    width: 30%;
+    max-width: 500px;
+    min-width: 300px;
     margin: 0 auto;
     border: 2px solid black;
     border-radius: 10px;
@@ -32,6 +34,12 @@
     margin: auto;
     border: none;
     border-radius: 8px;
+    font-size: 2vw;
+}
+
+.login-container .login input:focus {
+    border-color: gold;
+    box-shadow: 0 0 4px gold;
 }
 
 .login-container .type-link {

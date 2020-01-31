@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import GameContext from './GameContext';
 import { data } from './contents.json';
-import firebase, { auth, provider } from './firebase.js';
+import firebase from './firebase.js';
+import Game from './GameClass';
 
 class GameProvider extends Component {
+    constructor(props) {
+        super(props);
+        this.state.user = props.user;
+    }
+
     state = { 
         gameModes: {
             PREGAME: 'pre',
@@ -11,15 +17,43 @@ class GameProvider extends Component {
             POSTGAME: 'post'
         },
         gameMode: 'pre',
-        img: this.getImageInfo(),
+        img: null,
         players: [],
-        history: [],
-        user: null,
+        history: []
      }
     
     componentDidMount() {
-        this.getPlayerInfo();
-        this.getGameHistory();
+        this.loadAssets();
+    }
+
+    loadAssets() {
+        const { isLoaded } = this.props;
+        Promise.all([this.getPlayerInfo(), this.getGameHistory()])
+            .then(async snaps => {
+                let val = snaps[0].val();
+                const players = [];
+                for (let _id in val) {
+                    val[_id]['_id'] = _id;
+                    players.push(val[_id]);
+                }
+                this.setState({players: players});
+
+                val = snaps[1].val();
+                if (val) {
+                    const values = Object.values(val).filter(v => !v.skipped);
+                    const sorted = values.sort((a, b) => {
+                        const valA = new Date(a.date).getTime();
+                        const valB = new Date(b.date).getTime();
+                        return valB - valA;
+                    });
+                    this.setState({history: sorted});
+                }
+
+                const img = this.getImageInfo();
+                this.setState({img: img});
+                isLoaded();
+            })
+            .catch(err => console.error(err));
     }
 
     render() { 
@@ -32,7 +66,8 @@ class GameProvider extends Component {
                     setToLiveMode: () => this.setState({gameMode: this.state.gameModes.LIVEGAME}),
                     setToPostgameMode: () => this.setState({gameMode: this.state.gameModes.POSTGAME}),
                     img: this.state.img,
-                    getNewImage: () => this.setState({img: this.getImageInfo()}),
+                    getNewImage: this.getNewImage.bind(this),
+                    skipImage: this.skipImage.bind(this),
                     players: this.state.players,
                     history: this.state.history,
                     resetGame: this.resetGame.bind(this),
@@ -44,43 +79,37 @@ class GameProvider extends Component {
             </GameContext.Provider>
          );
     }
+    getNewImage() {
+        const img = this.getImageInfo();
+        this.setState({img: img});
+    }
+
+    skipImage() {
+        const gamesRef = firebase.database().ref(this.state.user + '/games');
+        const skippedGame = new Game(this.state.img.caption, this.state.img.img_src, 'SKIPPED', true);
+        gamesRef.push(skippedGame);
+        this.getNewImage();
+    }
     getImageInfo() {
-        // const entry = data[Math.floor(Math.random() * data.length)];
-        // if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
-        //     this.getImageInfo();
-        // }
+        const entry = data[Math.floor(Math.random() * data.length)];
+        if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
+            return this.getImageInfo();
+        }
+        return entry;
         //for testing
-        return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
+        // return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
     }
     getPlayerInfo() {
-        if (this.state.user) {
-            const playersRef = firebase.database().ref('players');
-            playersRef.on('value', (snap) => {
-                const val = snap.val();
-                const players = [];
-                for (let _id in val) {
-                    val[_id]['_id'] = _id;
-                    players.push(val[_id]);
-                }
-                this.setState({players: players});
-            });
-        }
+        const playersRef = firebase.database().ref(this.state.user + '/players');
+        return playersRef.once('value');
     }
     getGameHistory() {
-        if (this.state.user) {
-            const gameHistoryRef = firebase.database().ref('games');
-            gameHistoryRef.on('value', (snap) => {
-                const val = snap.val();
-                if (val) {
-                    this.setState({history: Object.values(snap.val())});
-                }
-            });
-        }
+        const gameHistoryRef = firebase.database().ref(this.state.user + '/games');
+        return gameHistoryRef.once('value');
     }
     resetGame() {
-        this.setState({gameMode: this.state.gameModes.PREGAME, players: [], history: [], img: this.getImageInfo()});
-        this.getPlayerInfo();
-        this.getGameHistory();
+        this.loadAssets();
+        this.setState({gameMode: this.state.gameModes.PREGAME});
     }
 }
  
