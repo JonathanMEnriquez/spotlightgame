@@ -14,23 +14,37 @@ class Postgame extends Component {
     
     declareWinner(ev) {
         this.setState({winnerDeclared: true});
-        const { user } = this.context;
+        const { user, img, players } = this.context;
         const winner = ev.target.textContent;
         this.setState({congrats: `Congratulations to ${winner} for the Yuge win!`});
-        const { img, players } = this.context;
         const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
-        const winnerRef = firebase.database().ref(user + '/players/' + winningPlayerInfo._id);
         const newGame = new Game(img.caption, img.img_src, winner);
         gamesRef.push(newGame);
-        winnerRef.set({ name: winningPlayerInfo.name,  wins: winningPlayerInfo.wins += 1 });
+        this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
+    }
+
+    pushPlayerInfoToDB(winner, players, user) {
+        players.forEach(p => {
+            if (p.playing) {
+                const playerRef = firebase.database().ref(user + '/players/' + p._id);
+                if (p.name === winner.name) {
+                    playerRef.update({ wins: p.wins += 1, gamesPlayed: p.gamesPlayed += 1 });
+                } else {
+                    playerRef.update({ gamesPlayed: p.gamesPlayed += 1 });
+                }
+                
+            }
+        });
     }
 
     render() {
         const { img, players, resetGame } = this.context;
         const btnGroupEntries = [];
         Object.values(players).forEach(p => {
-            btnGroupEntries.push({text: p.name, clickHandler: this.declareWinner.bind(this)});
+            if (p.playing) {
+                btnGroupEntries.push({text: p.name, clickHandler: this.declareWinner.bind(this)});
+            }
         });
 
         return (

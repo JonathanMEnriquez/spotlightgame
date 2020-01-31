@@ -28,12 +28,14 @@ class GameProvider extends Component {
 
     loadAssets() {
         const { isLoaded } = this.props;
+        this.setState({players: [], history: []});
         Promise.all([this.getPlayerInfo(), this.getGameHistory()])
             .then(async snaps => {
                 let val = snaps[0].val();
                 const players = [];
                 for (let _id in val) {
                     val[_id]['_id'] = _id;
+                    val[_id].playing = true;
                     players.push(val[_id]);
                 }
                 this.setState({players: players});
@@ -72,13 +74,25 @@ class GameProvider extends Component {
                     history: this.state.history,
                     resetGame: this.resetGame.bind(this),
                     user: this.state.user,
-                    setUser: (userInfo) => this.setState({user: userInfo}), 
+                    setUser: (userInfo) => this.setState({user: userInfo}),
+                    toggleUserPlayingState: this.togglePlayingStateOfPlayer.bind(this),
                 }}
             >
                 {this.props.children}
             </GameContext.Provider>
          );
     }
+
+    togglePlayingStateOfPlayer(name) {
+        let arr = this.state.players.map(e => {
+            if (e.name === name) {
+                e.playing = !e.playing;
+            }
+            return e;
+        });
+        this.setState({players: arr});
+    }
+
     getNewImage() {
         const img = this.getImageInfo();
         this.setState({img: img});
