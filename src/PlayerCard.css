@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 
-.player-card > p {
+.player-card > p.name {
     margin: 0;
     padding: 2vh 0 0;
     color: gold;
@@ -18,7 +18,7 @@
     font-size: 2vw;
 }
 
-.player-card > p:last-of-type {
+.player-card > p {
     padding-top: 0.5vh;
     color: lightgray;
 }
