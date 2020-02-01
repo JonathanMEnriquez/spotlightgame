@@ -2,7 +2,12 @@ A game for people that stare at Windows Spotlight images too much. Created in El
 
 ## Get Started
 
-Clone the repository and cd into the directory. In the project directory, you can run:
+Prerequisites -
+npm (12.0.0^)
+
+Clone the repository and cd into the directory. Run `npm install`.
+
+In the project directory, you can now run:
 
 ### `npm run start`
 
