@@ -21,4 +21,5 @@
 .player-card > p {
     padding-top: 0.5vh;
     color: lightgray;
+    font-size: 2vw;
 }
