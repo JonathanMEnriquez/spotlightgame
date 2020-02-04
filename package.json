@@ -17,13 +17,15 @@
   "main": "public/electron.js",
   "build": {
     "appId": "spotlight.menu"
-  },
-  "homepage": "./",
+  }, 
+  "homepage": "http://JonathanMEnriquez.github.io/spotlightgame",
   "scripts": {
     "react-start": "react-scripts start",
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
+    "predeploy": "npm run react-build",
+    "deploy": "gh-pages -d build",
     "electron-build": "electron-builder",
     "build": "npm run react-build && electron-builder",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
