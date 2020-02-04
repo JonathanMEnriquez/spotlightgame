@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/spotlightgame/static/css/main.fa2624fe.chunk.css",
+    "main.js": "/spotlightgame/static/js/main.d2fe5837.chunk.js",
+    "main.js.map": "/spotlightgame/static/js/main.d2fe5837.chunk.js.map",
+    "runtime-main.js": "/spotlightgame/static/js/runtime-main.91b3574a.js",
+    "runtime-main.js.map": "/spotlightgame/static/js/runtime-main.91b3574a.js.map",
+    "static/js/2.841596bd.chunk.js": "/spotlightgame/static/js/2.841596bd.chunk.js",
+    "static/js/2.841596bd.chunk.js.map": "/spotlightgame/static/js/2.841596bd.chunk.js.map",
+    "index.html": "/spotlightgame/index.html",
+    "precache-manifest.1f8f448150f97b7c216981270a2745ee.js": "/spotlightgame/precache-manifest.1f8f448150f97b7c216981270a2745ee.js",
+    "service-worker.js": "/spotlightgame/service-worker.js",
+    "static/css/main.fa2624fe.chunk.css.map": "/spotlightgame/static/css/main.fa2624fe.chunk.css.map",
+    "static/js/2.841596bd.chunk.js.LICENSE": "/spotlightgame/static/js/2.841596bd.chunk.js.LICENSE",
+    "static/media/bouncing.gif": "/spotlightgame/static/media/bouncing.ba717b23.gif",
+    "static/media/cancel.png": "/spotlightgame/static/media/cancel.f743a430.png",
+    "static/media/expand.png": "/spotlightgame/static/media/expand.6225ffbc.png",
+    "static/media/gears.png": "/spotlightgame/static/media/gears.4a3b80e7.png",
+    "static/media/globe.png": "/spotlightgame/static/media/globe.cf1fad60.png",
+    "static/media/spotlight.png": "/spotlightgame/static/media/spotlight.6f01fba9.png",
+    "static/media/star.png": "/spotlightgame/static/media/star.3c794117.png",
+    "static/media/star_off.png": "/spotlightgame/static/media/star_off.2a641e87.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91b3574a.js",
+    "static/js/2.841596bd.chunk.js",
+    "static/css/main.fa2624fe.chunk.css",
+    "static/js/main.d2fe5837.chunk.js"
+  ]
+}
