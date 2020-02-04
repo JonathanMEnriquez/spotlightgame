@@ -17,7 +17,7 @@ class Login extends Component {
                         <input id="login-email" />
                     </label>
                     <label>Password: 
-                        <input type="password" id="login-pwd" />
+                        <input type="password" id="login-pwd" onKeyUp={this.handleKeyPress.bind(this)} />
                     </label>
                     <div className="submit">
                         <MainButton actionTitle="Submit" simple={true} clickHandler={this.loginOrRegister.bind(this)} />
@@ -28,6 +28,12 @@ class Login extends Component {
                     >{this.state.registerMode ? 'Already Registered?' : 'New User?'}</p> */}
             </div>
         );
+    }
+
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.loginOrRegister();
+        }
     }
 
     loginOrRegister() {
@@ -43,6 +49,8 @@ class Login extends Component {
 
                 if (res.user) {
                     this.props.setUser(res.user);
+                } else {
+                    document.getElementById('login-pwd').value = '';
                 }
             });
     }
