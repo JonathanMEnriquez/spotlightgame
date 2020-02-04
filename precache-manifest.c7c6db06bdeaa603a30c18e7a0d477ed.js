@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e11e75a1f6022f1dc28672fb2a30c41b",
+    "revision": "84a1ec8835ae09d0a9cf7dc1143fa531",
     "url": "/spotlightgame/index.html"
   },
   {
-    "revision": "a75728ea86c444037bb5",
-    "url": "/spotlightgame/static/css/main.fa2624fe.chunk.css"
+    "revision": "746907e2b5ce27c29ade",
+    "url": "/spotlightgame/static/css/main.cfb890fb.chunk.css"
   },
   {
     "revision": "94a53b52a0ee9e9ce402",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/spotlightgame/static/js/2.841596bd.chunk.js.LICENSE"
   },
   {
-    "revision": "a75728ea86c444037bb5",
+    "revision": "746907e2b5ce27c29ade",
     "url": "/spotlightgame/static/js/main.d2fe5837.chunk.js"
   },
   {
