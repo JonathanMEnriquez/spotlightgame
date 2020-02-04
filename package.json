@@ -17,7 +17,7 @@
   "main": "public/electron.js",
   "build": {
     "appId": "spotlight.menu"
-  }, 
+  },
   "homepage": "http://JonathanMEnriquez.github.io/spotlightgame",
   "scripts": {
     "react-start": "react-scripts start",
@@ -49,7 +49,8 @@
     "concurrently": "5.1.0",
     "electron": "7.1.10",
     "electron-builder": "22.3.2",
-    "wait-on": "4.0.0",
-    "firebase": "7.7.0"
+    "firebase": "7.7.0",
+    "gh-pages": "^2.2.0",
+    "wait-on": "4.0.0"
   }
 }
