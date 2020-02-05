@@ -7,7 +7,7 @@ import GameContext from './GameContext';
 class PlayerCard extends Component {
     generateAverageWin(wins, total) {
         const avg = wins && total 
-                ? Math.round(10 * (Number(2) / Number(3))) / 10
+                ? Math.round(100 * (Number(wins) / Number(total)))
                 : 0;
         return avg.toString() + ' %';
     }
