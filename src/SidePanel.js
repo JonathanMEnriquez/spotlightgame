@@ -3,6 +3,7 @@ import './SidePanel.css';
 import GameContext from './GameContext';
 import MainButton from './MainButton';
 import MapIcon from './img/map.png';
+import Close from './img/cross.png';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class SidePanel extends Component {
@@ -28,12 +29,13 @@ class SidePanel extends Component {
     }
     render() {
         const { players } = this.context;
-        const { visible } = this.props;
+        const { visible, closePanel } = this.props;
         return (
             <TransitionGroup component={null}>
             {visible &&
                 <CSSTransition classNames="panel-dialog" timeout={300} >
                 <div className="side-panel">
+                    <img className="close" src={Close} alt="X" onClick={closePanel} />
                     <div className="map">
                         <img src={MapIcon} alt="Guess" />
                     </div>

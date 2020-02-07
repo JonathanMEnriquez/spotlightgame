@@ -18,6 +18,14 @@
     height: 5vw;
 }
 
+.side-panel > .close {
+    width: 2vw;
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+    cursor: pointer;
+}
+
 .side-panel .map img {
     display: block;
     width: 6vw;

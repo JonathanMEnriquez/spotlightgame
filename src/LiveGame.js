@@ -46,7 +46,7 @@ class LiveGame extends Component {
         ]
         return ( 
             <div className="live-game">
-                <SidePanel goToPostGame={setToPostgameMode} visible={sidePanelVisible} />
+                <SidePanel goToPostGame={setToPostgameMode} closePanel={this.toggleSidePanelVisibility.bind(this)} visible={sidePanelVisible} />
                 <div className="footer-actions">
                     <img src={gears}
                         onMouseEnter={this.makeBtnGrpVisible.bind(this)}
