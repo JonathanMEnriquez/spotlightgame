@@ -22,7 +22,7 @@ class Postgame extends Component {
         console.log('guesses ', guesses);
         const newGame = new Game(img.caption, img.img_src, winner, guesses);
         gamesRef.push(newGame);
-        // this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
+        this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
     }
 
     pushPlayerInfoToDB(winner, players, user) {
