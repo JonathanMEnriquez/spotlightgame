@@ -3,7 +3,7 @@ import './Postgame.css';
 import GameContext from './GameContext';
 import ButtonGroup from './ButtonGroup';
 import Game from './GameClass';
-import firebase, { auth, provider } from './firebase.js';
+import firebase from './firebase.js';
 import MainButton from './MainButton';
 
 class Postgame extends Component {
@@ -14,12 +14,12 @@ class Postgame extends Component {
     
     declareWinner(ev) {
         this.setState({winnerDeclared: true});
-        const { user, img, players } = this.context;
+        const { user, img, players, guesses } = this.context;
         const winner = ev.target.textContent;
         this.setState({congrats: `Congratulations to ${winner} for earning the spotlight!`});
         const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
-        const newGame = new Game(img.caption, img.img_src, winner);
+        const newGame = new Game(img.caption, img.img_src, winner, guesses);
         gamesRef.push(newGame);
         this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
     }

@@ -5,11 +5,13 @@ import globe from './img/globe.png';
 import cancel from './img/cancel.png';
 import './LiveGame.css';
 import ButtonGroup from './ButtonGroup';
+import SidePanel from './SidePanel';
 
 class LiveGame extends Component {
     state = { 
         btnGroupVisible: false,
-        timeout: null
+        timeout: null,
+        sidePanelVisible: false
     }
     makeBtnGrpVisible() {
         if (this.state.timeout) {
@@ -32,23 +34,31 @@ class LiveGame extends Component {
     componentWillUnmount() {
         this.setState({timeout: null});
     }
+    toggleSidePanelVisibility() {
+        this.setState({sidePanelVisible: !this.state.sidePanelVisible});
+    }
     render() {
         const { setToPostgameMode, skipImage } = this.context;
         const btnGroupEntries = [
-            {alt: 'globe', src: globe, clickHandler: setToPostgameMode},
+            {alt: 'globe', src: globe, clickHandler: this.toggleSidePanelVisibility.bind(this)},
             {alt: 'cancel/skip', src: cancel, clickHandler: skipImage}
         ]
         return ( 
-            <div className="footer-actions">
-                <img src={gears}
-                    onMouseEnter={this.makeBtnGrpVisible.bind(this)}
-                    onMouseLeave={this.setTimeoutBtnVisible.bind(this)}
-                    alt="Settings"
-                    className="gears" />
-
-                {this.state.btnGroupVisible &&
-                    <ButtonGroup elements={btnGroupEntries} icon={true} mouseLeave={this.setTimeoutBtnVisible.bind(this)} mouseEnter={this.makeBtnGrpVisible.bind(this)} />
+            <div className="live-game">
+                {this.state.sidePanelVisible &&
+                    <SidePanel goToPostGame={setToPostgameMode} />
                 }
+                <div className="footer-actions">
+                    <img src={gears}
+                        onMouseEnter={this.makeBtnGrpVisible.bind(this)}
+                        onMouseLeave={this.setTimeoutBtnVisible.bind(this)}
+                        alt="Settings"
+                        className="gears" />
+
+                    {this.state.btnGroupVisible &&
+                        <ButtonGroup elements={btnGroupEntries} icon={true} mouseLeave={this.setTimeoutBtnVisible.bind(this)} mouseEnter={this.makeBtnGrpVisible.bind(this)} />
+                    }
+                </div>
             </div>
          );
     }
