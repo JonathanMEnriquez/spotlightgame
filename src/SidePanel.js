@@ -5,6 +5,9 @@ import MainButton from './MainButton';
 import MapIcon from './img/map.png';
 
 class SidePanel extends Component {
+    shouldComponentUpdate(nextProps) {
+        return this.props.visible !== nextProps.visible;
+    }
     async saveGuesses() {
         const { goToPostGame } = this.props;
         const { updateGuesses } = this.context;
@@ -24,28 +27,33 @@ class SidePanel extends Component {
     }
     render() {
         const { players } = this.context;
+        const { visible } = this.props;
         return (
-            <div className="side-panel">
-                <div className="map">
-                    <img src={MapIcon} alt="Guess" />
+            <div>
+            {visible &&
+                <div className="side-panel">
+                    <div className="map">
+                        <img src={MapIcon} alt="Guess" />
+                    </div>
+                    <div className="guesses">
+                    {players.map((p, i) => {
+                        if (p.name === 'No one') return null;
+                        return (
+                        <div className="guess-input" key={i}>
+                            <div>{p.name}</div>
+                            <input />
+                        </div>                    
+                        )
+                    })}
+                    </div>
+                    <div className="side-submit">
+                        <MainButton
+                            actionTitle="Submit" 
+                            simple={true} 
+                            clickHandler={this.saveGuesses.bind(this)} />
+                    </div>
                 </div>
-                <div className="guesses">
-                {players.map((p, i) => {
-                    if (p.name === 'No one') return null;
-                    return (
-                    <div className="guess-input" key={i}>
-                        <div>{p.name}</div>
-                        <input />
-                    </div>                    
-                    )
-                })}
-                </div>
-                <div className="side-submit">
-                    <MainButton
-                        actionTitle="Submit" 
-                        simple={true} 
-                        clickHandler={this.saveGuesses.bind(this)} />
-                </div>
+            }
             </div>
         );
     }
