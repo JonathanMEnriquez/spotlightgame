@@ -39,15 +39,14 @@ class LiveGame extends Component {
     }
     render() {
         const { setToPostgameMode, skipImage } = this.context;
+        const { sidePanelVisible } = this.state;
         const btnGroupEntries = [
             {alt: 'globe', src: globe, clickHandler: this.toggleSidePanelVisibility.bind(this)},
             {alt: 'cancel/skip', src: cancel, clickHandler: skipImage}
         ]
         return ( 
             <div className="live-game">
-                {this.state.sidePanelVisible &&
-                    <SidePanel goToPostGame={setToPostgameMode} />
-                }
+                <SidePanel goToPostGame={setToPostgameMode} closePanel={this.toggleSidePanelVisibility.bind(this)} visible={sidePanelVisible} />
                 <div className="footer-actions">
                     <img src={gears}
                         onMouseEnter={this.makeBtnGrpVisible.bind(this)}
