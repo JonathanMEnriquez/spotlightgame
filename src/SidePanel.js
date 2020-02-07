@@ -3,6 +3,7 @@ import './SidePanel.css';
 import GameContext from './GameContext';
 import MainButton from './MainButton';
 import MapIcon from './img/map.png';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class SidePanel extends Component {
     shouldComponentUpdate(nextProps) {
@@ -29,8 +30,9 @@ class SidePanel extends Component {
         const { players } = this.context;
         const { visible } = this.props;
         return (
-            <div>
+            <TransitionGroup component={null}>
             {visible &&
+                <CSSTransition classNames="panel-dialog" timeout={300} >
                 <div className="side-panel">
                     <div className="map">
                         <img src={MapIcon} alt="Guess" />
@@ -53,8 +55,9 @@ class SidePanel extends Component {
                             clickHandler={this.saveGuesses.bind(this)} />
                     </div>
                 </div>
+                </CSSTransition>
             }
-            </div>
+            </TransitionGroup>
         );
     }
 }
