@@ -16,7 +16,7 @@ class Postgame extends Component {
         this.setState({winnerDeclared: true});
         const { user, img, players } = this.context;
         const winner = ev.target.textContent;
-        this.setState({congrats: `Congratulations to ${winner} for the Yuge win!`});
+        this.setState({congrats: `Congratulations to ${winner} for the earning the spotlight!`});
         const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
         const newGame = new Game(img.caption, img.img_src, winner);
