@@ -19,7 +19,8 @@ class GameProvider extends Component {
         gameMode: 'pre',
         img: null,
         players: [],
-        history: []
+        history: [],
+        guesses: {}
      }
     
     componentDidMount() {
@@ -76,6 +77,8 @@ class GameProvider extends Component {
                     user: this.state.user,
                     setUser: (userInfo) => this.setState({user: userInfo}),
                     toggleUserPlayingState: this.togglePlayingStateOfPlayer.bind(this),
+                    guesses: this.state.guesses,
+                    updateGuesses: (guesses) => this.setState({guesses: guesses}),
                 }}
             >
                 {this.props.children}
@@ -104,23 +107,27 @@ class GameProvider extends Component {
         gamesRef.push(skippedGame);
         this.getNewImage();
     }
+
     getImageInfo() {
-        const entry = data[Math.floor(Math.random() * data.length)];
-        if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
-            return this.getImageInfo();
-        }
-        return entry;
+        // const entry = data[Math.floor(Math.random() * data.length)];
+        // if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
+        //     return this.getImageInfo();
+        // }
+        // return entry;
         //for testing
-        // return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
+        return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
     }
+
     getPlayerInfo() {
         const playersRef = firebase.database().ref(this.state.user + '/players');
         return playersRef.once('value');
     }
+
     getGameHistory() {
         const gameHistoryRef = firebase.database().ref(this.state.user + '/games');
         return gameHistoryRef.once('value');
     }
+
     resetGame() {
         this.loadAssets();
         this.setState({gameMode: this.state.gameModes.PREGAME});

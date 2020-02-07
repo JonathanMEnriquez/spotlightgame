@@ -1,0 +1,28 @@
+.side-panel {
+    width: 25%;
+    min-width: 300px;
+    position: absolute;
+    top: 15%;
+    left: 71%;
+    background: #2b2b2b;
+    border: 1px solid gray;
+    border-radius: 8px;
+    z-index: 1000;
+    padding: 0 1vw 4vh;
+}
+
+.side-panel > h3 {
+    font-size: 2vw;
+    text-align: center;
+    padding: 2vh;
+    margin: 0;
+}
+
+.side-panel .guess-input {
+    padding: 1vh 1vw;
+    font-size: 1.5vw;
+}
+
+.side-panel .guess-input > input {
+    width: 100%;
+}
