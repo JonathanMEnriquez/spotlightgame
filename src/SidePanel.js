@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './SidePanel.css';
 import GameContext from './GameContext';
 import MainButton from './MainButton';
+import MapIcon from './img/map.png';
 
 class SidePanel extends Component {
     async saveGuesses() {
@@ -25,7 +26,10 @@ class SidePanel extends Component {
         const { players } = this.context;
         return (
             <div className="side-panel">
-                <h3>Guesses</h3>
+                <div className="map">
+                    <img src={MapIcon} alt="Guess" />
+                </div>
+                <div className="guesses">
                 {players.map((p, i) => {
                     if (p.name === 'No one') return null;
                     return (
@@ -35,10 +39,13 @@ class SidePanel extends Component {
                     </div>                    
                     )
                 })}
-                <MainButton
-                    actionTitle="Submit" 
-                    simple={true} 
-                    clickHandler={this.saveGuesses.bind(this)} />
+                </div>
+                <div className="side-submit">
+                    <MainButton
+                        actionTitle="Submit" 
+                        simple={true} 
+                        clickHandler={this.saveGuesses.bind(this)} />
+                </div>
             </div>
         );
     }
