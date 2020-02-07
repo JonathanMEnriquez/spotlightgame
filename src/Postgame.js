@@ -19,7 +19,6 @@ class Postgame extends Component {
         this.setState({congrats: `Congratulations to ${winner} for the Yuge win!`});
         const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
-        console.log('guesses ', guesses);
         const newGame = new Game(img.caption, img.img_src, winner, guesses);
         gamesRef.push(newGame);
         this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
