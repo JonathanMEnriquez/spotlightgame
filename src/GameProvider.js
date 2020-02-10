@@ -129,8 +129,7 @@ class GameProvider extends Component {
     }
 
     resetGame() {
-        this.loadAssets();
-        this.setState({gameMode: this.state.gameModes.PREGAME});
+        window.location.reload();
     }
 }
  
