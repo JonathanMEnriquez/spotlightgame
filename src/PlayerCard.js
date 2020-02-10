@@ -13,7 +13,7 @@ const PlayerCard = (props) => {
         const avg = wins && total 
                 ? Math.round(100 * (Number(wins) / Number(total)))
                 : 0;
-        return avg.toString() + ' %';
+        return `${avg} %`;
     }
 
     const generateAlt = (isChamp) => {
