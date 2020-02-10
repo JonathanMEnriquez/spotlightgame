@@ -60,7 +60,7 @@ class Postgame extends Component {
                 <ButtonGroup elements={btnGroupEntries} disabled={this.state.winnerDeclared} icon={false} centered={true} />
                 {this.state.winnerDeclared &&
                     <div className="main-button-container">
-                        <MainButton actionTitle="Start Over" simple={false} clickHandler={resetGame} />
+                        <MainButton actionTitle="Home" simple={false} clickHandler={resetGame} />
                     </div>
                 }
             </div>
