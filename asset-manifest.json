@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/spotlightgame/static/css/main.5cd55bac.chunk.css",
-    "main.js": "/spotlightgame/static/js/main.30c13d5b.chunk.js",
-    "main.js.map": "/spotlightgame/static/js/main.30c13d5b.chunk.js.map",
+    "main.js": "/spotlightgame/static/js/main.4c5860ca.chunk.js",
+    "main.js.map": "/spotlightgame/static/js/main.4c5860ca.chunk.js.map",
     "runtime-main.js": "/spotlightgame/static/js/runtime-main.91b3574a.js",
     "runtime-main.js.map": "/spotlightgame/static/js/runtime-main.91b3574a.js.map",
     "static/js/2.6d4042e6.chunk.js": "/spotlightgame/static/js/2.6d4042e6.chunk.js",
     "static/js/2.6d4042e6.chunk.js.map": "/spotlightgame/static/js/2.6d4042e6.chunk.js.map",
     "index.html": "/spotlightgame/index.html",
-    "precache-manifest.51611fc5307d87e1ce8f4a7fe8754bd8.js": "/spotlightgame/precache-manifest.51611fc5307d87e1ce8f4a7fe8754bd8.js",
+    "precache-manifest.d9f9c1fd7addba305dc41cc228aad7e1.js": "/spotlightgame/precache-manifest.d9f9c1fd7addba305dc41cc228aad7e1.js",
     "service-worker.js": "/spotlightgame/service-worker.js",
     "static/css/main.5cd55bac.chunk.css.map": "/spotlightgame/static/css/main.5cd55bac.chunk.css.map",
     "static/js/2.6d4042e6.chunk.js.LICENSE": "/spotlightgame/static/js/2.6d4042e6.chunk.js.LICENSE",
@@ -26,6 +26,6 @@
     "static/js/runtime-main.91b3574a.js",
     "static/js/2.6d4042e6.chunk.js",
     "static/css/main.5cd55bac.chunk.css",
-    "static/js/main.30c13d5b.chunk.js"
+    "static/js/main.4c5860ca.chunk.js"
   ]
 }
