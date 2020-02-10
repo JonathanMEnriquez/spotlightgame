@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/spotlightgame/static/css/main.5cd55bac.chunk.css",
-    "main.js": "/spotlightgame/static/js/main.4c5860ca.chunk.js",
-    "main.js.map": "/spotlightgame/static/js/main.4c5860ca.chunk.js.map",
+    "main.css": "/spotlightgame/static/css/main.46ac62fa.chunk.css",
+    "main.js": "/spotlightgame/static/js/main.82314d06.chunk.js",
+    "main.js.map": "/spotlightgame/static/js/main.82314d06.chunk.js.map",
     "runtime-main.js": "/spotlightgame/static/js/runtime-main.91b3574a.js",
     "runtime-main.js.map": "/spotlightgame/static/js/runtime-main.91b3574a.js.map",
-    "static/js/2.6d4042e6.chunk.js": "/spotlightgame/static/js/2.6d4042e6.chunk.js",
-    "static/js/2.6d4042e6.chunk.js.map": "/spotlightgame/static/js/2.6d4042e6.chunk.js.map",
+    "static/js/2.9229053d.chunk.js": "/spotlightgame/static/js/2.9229053d.chunk.js",
+    "static/js/2.9229053d.chunk.js.map": "/spotlightgame/static/js/2.9229053d.chunk.js.map",
     "index.html": "/spotlightgame/index.html",
-    "precache-manifest.d9f9c1fd7addba305dc41cc228aad7e1.js": "/spotlightgame/precache-manifest.d9f9c1fd7addba305dc41cc228aad7e1.js",
+    "precache-manifest.e6f3d4f872907744993731fe7effe86c.js": "/spotlightgame/precache-manifest.e6f3d4f872907744993731fe7effe86c.js",
     "service-worker.js": "/spotlightgame/service-worker.js",
-    "static/css/main.5cd55bac.chunk.css.map": "/spotlightgame/static/css/main.5cd55bac.chunk.css.map",
-    "static/js/2.6d4042e6.chunk.js.LICENSE": "/spotlightgame/static/js/2.6d4042e6.chunk.js.LICENSE",
+    "static/css/main.46ac62fa.chunk.css.map": "/spotlightgame/static/css/main.46ac62fa.chunk.css.map",
+    "static/js/2.9229053d.chunk.js.LICENSE": "/spotlightgame/static/js/2.9229053d.chunk.js.LICENSE",
     "static/media/bouncing.gif": "/spotlightgame/static/media/bouncing.ba717b23.gif",
     "static/media/cancel.png": "/spotlightgame/static/media/cancel.f743a430.png",
+    "static/media/crown.png": "/spotlightgame/static/media/crown.684af6ea.png",
+    "static/media/crown_off.png": "/spotlightgame/static/media/crown_off.978e8029.png",
     "static/media/expand.png": "/spotlightgame/static/media/expand.6225ffbc.png",
     "static/media/gears.png": "/spotlightgame/static/media/gears.4a3b80e7.png",
     "static/media/globe.png": "/spotlightgame/static/media/globe.cf1fad60.png",
@@ -24,8 +26,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.91b3574a.js",
-    "static/js/2.6d4042e6.chunk.js",
-    "static/css/main.5cd55bac.chunk.css",
-    "static/js/main.4c5860ca.chunk.js"
+    "static/js/2.9229053d.chunk.js",
+    "static/css/main.46ac62fa.chunk.css",
+    "static/js/main.82314d06.chunk.js"
   ]
 }
