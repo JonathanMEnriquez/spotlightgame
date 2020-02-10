@@ -1,31 +1,27 @@
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import './Standings.css';
 import GameContext from './GameContext';
 import PlayerCard from './PlayerCard';
-import Expand from './img/expand.png'
+import Expand from './img/expand.png';
 
-class Standings extends Component {
-    state = {
-        showAllInfo: false
+const Standings = () => {
+    const [showAllInfo, setAllInfo] = useState(false);
+    const { players, toggleUserPlayingState, history } = useContext(GameContext);
+
+    const toggleDisplayOfInfo = () => {
+        setAllInfo(show => !show);
     }
 
-    toggleDisplayOfInfo() {
-        this.setState({showAllInfo: !this.state.showAllInfo});
-    }
-    /*
-    currently, the behavior in the GameProvider is to provide History already sorted,
-    however, this may not always be the case in the future so this sort is added as insurance.
-    */
-    sortAndReturnGameHistory(history) {
+    const sortAndReturnGameHistory = (history) => {
         return history.sort((a, b) => a.date - b.date);
     }
 
-    getReigningChampion(sortedHistory) {
+    const getReigningChampion = (sortedHistory) => {
         return sortedHistory[0].winner;
     }
 
-    currentWinStreak(sortedHistory) {
-        const champ = this.getReigningChampion(sortedHistory);
+    const getCurrentWinStreak = (sortedHistory) => {
+        const champ = getReigningChampion(sortedHistory);
         let streak = 0;
 
         while (streak < sortedHistory.length) {
@@ -39,28 +35,35 @@ class Standings extends Component {
         return streak;
     }
 
-    render() {
-        const { players, toggleUserPlayingState, history } = this.context;
-        const sortedHistory = this.sortAndReturnGameHistory(history);
-        const reigningChamp = this.getReigningChampion(sortedHistory);
-        const currentWinStreak = this.currentWinStreak(sortedHistory);
-        return ( 
-            <div className="standings">
-                <img className="expand" src={Expand} alt="expand" onClick={this.toggleDisplayOfInfo.bind(this)} />
-                {players.map((e, i) => {
-                    if (e.name !== 'No one') {
-                        return (
-                            <PlayerCard name={e.name} isCurrentChamp={e.name === reigningChamp} streak={currentWinStreak} allInfo={this.state.showAllInfo} key={i} wins={e.wins} playing={e.playing} togglePlaying={toggleUserPlayingState} gamesPlayed={e.gamesPlayed} />
-                        );
-                    } else {
-                        return null;
-                    }
-                })}
-            </div>
-        );
-    }
-}
+    /*
+    currently, the behavior in the GameProvider is to provide History already sorted,
+    however, this may not always be the case in the future so this sort is added as insurance.
+    */
+    const sortedHistory = sortAndReturnGameHistory(history);
+    const reigningChamp = getReigningChampion(sortedHistory);
+    const currentWinStreak = getCurrentWinStreak(sortedHistory);
 
-Standings.contextType = GameContext;
+    return ( 
+        <div className="standings">
+            <img className="expand" src={Expand} alt="expand" onClick={toggleDisplayOfInfo.bind(this)} />
+            {players.map((e, i) => {
+                if (e.name !== 'No one' && e.active) {
+                    return (
+                        <PlayerCard name={e.name} key={i} 
+                        isCurrentChamp={e.name === reigningChamp} 
+                        streak={currentWinStreak} 
+                        allInfo={showAllInfo} 
+                        wins={e.wins} 
+                        playing={e.playing} 
+                        togglePlaying={toggleUserPlayingState} 
+                        gamesPlayed={e.gamesPlayed} />
+                    );
+                } else {
+                    return null;
+                }
+            })}
+        </div>
+    );
+}
  
 export default Standings;
