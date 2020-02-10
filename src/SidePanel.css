@@ -45,6 +45,7 @@
 
 .side-panel .guess-input > input {
     width: 100%;
+    padding: .5vh .25vw;
 }
 
 .side-panel .side-submit {

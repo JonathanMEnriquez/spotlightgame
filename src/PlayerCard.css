@@ -25,12 +25,16 @@
 }
 
 .player-card .streak {
+    display: inline-flex;
     border-radius: 100%;
     border: 1px solid gold;
     background-color: red;
     color: white;
-    font-size: 1vw;
+    font-size: 1.25vw;
     font-weight: bold;
-    padding: .25vw .5vw;
-    margin-left: -2vw;
+    margin-left: -2.25vw;
+    width: 2vw;
+    height: 2vw;
+    justify-content: center;
+    align-items: center;
 }
