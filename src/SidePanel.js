@@ -41,7 +41,7 @@ class SidePanel extends Component {
                     </div>
                     <div className="guesses">
                     {players.map((p, i) => {
-                        if (p.name === 'No one') return null;
+                        if (p.name === 'No one' || !p.playing) return null;
                         return (
                         <div className="guess-input" key={i}>
                             <div>{p.name}</div>
