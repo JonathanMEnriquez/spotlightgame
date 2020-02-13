@@ -1,3 +1,7 @@
+.record {
+    cursor: pointer;
+}
+
 .record > td {
     padding: 2px 4px 2px;
     font-size: 1.5vw;
@@ -13,14 +17,20 @@
     text-decoration: none;
 }
 
-/* .entry > .guesses {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
+.entry .guesses {
+    text-align: center;
+    color: #e1e1e1;
+    background-color: #424242;
+}
+
+.entry .guesses td {
+    padding-bottom: 4px;
 }
 
 .entry .guesses span {
-    display: flex;
-    flex-wrap: nowrap;
-} */
+    font-size: 1.5vw;
+}
+
+.entry .guesses span:last-child {
+    padding-right: 0;
+}
