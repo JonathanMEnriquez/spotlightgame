@@ -3,7 +3,7 @@ import './SingleRecord.css';
 
 const SingleRecord = (props) => {
     const [displayGuesses, setDisplayGuesses] = useState(false);
-    const { record, key } = props;
+    const { record } = props;
     const guessesKeys = Object.keys(record.guesses);
 
     const toggleGuessDisplay = () => {
@@ -12,7 +12,7 @@ const SingleRecord = (props) => {
 
     return (
     <tbody className="entry">
-        <tr key={key} className="record" onClick={toggleGuessDisplay}>
+        <tr className="record" onClick={toggleGuessDisplay}>
             <td>{record.date}</td>
             <td>{record.location}</td>
             <td>{record.winner}</td>
