@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/spotlightgame/precache-manifest.6102f004c29d21519e61663eb342ddeb.js"
+  "/spotlightgame/precache-manifest.d56f711896d6eec1d6b4873353b2433f.js"
 );
 
 self.addEventListener('message', (event) => {
