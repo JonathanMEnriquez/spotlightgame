@@ -3,8 +3,14 @@
     background: darkgray;
     border: 2px solid white;
     border-radius: 8px;
-    overflow-y: auto;
+    overflow-y: hidden;
     color: black;
+}
+
+.history .results {
+    width: 100%;
+    overflow-y: auto;
+    height: 45vh;
 }
 
 .history table {
@@ -23,6 +29,8 @@
 .history > h3 {
     text-align: center;
     font-weight: normal;
+    font-size: 2vw;
+    color: rgb(216, 216, 216);
 }
 
 .history .record:hover {
