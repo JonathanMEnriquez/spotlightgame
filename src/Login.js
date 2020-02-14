@@ -25,7 +25,8 @@ const Login = (props) => {
                 } else {
                     document.getElementById('login-pwd').value = '';
                 }
-            });
+            })
+            .fail(err => console.error('Failed to login - ', err));
     }
 
     return ( 
