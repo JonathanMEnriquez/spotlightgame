@@ -22,7 +22,10 @@ const SingleRecord = (props) => {
             <td colSpan={4}>
                 {guessesKeys.map((k, i) => {
                     return (
-                    <span className="guess" key={i}>{`${k}: ${record.guesses[k]}${i === guessesKeys.length - 1 ? '' : ', '}`}</span>
+                    <span key={i} className="guess-row">
+                        <span className="guesser">{`${k}: `}</span>
+                        <span className="guess">{`${record.guesses[k]}${i === guessesKeys.length - 1 ? '' : ', '}`}</span>
+                    </span>
                     )
                 })}
             </td>
