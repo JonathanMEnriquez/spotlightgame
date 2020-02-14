@@ -4,7 +4,7 @@ import Bouncing from './img/bouncing.gif';
 import GameProvider from './GameProvider';
 import GameSwitch from './GameSwitch';
 import Spotlight from './img/spotlight.png';
-import firebase, { auth } from './firebase';
+import firebase from './firebase';
 import Login from "./Login";
 
 class Loading extends Component {

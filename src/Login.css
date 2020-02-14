@@ -6,9 +6,12 @@
 .login-container > h3 {
     text-align: center;
     padding-bottom: 2vh;
+    font-size: 2vw;
+    margin: 0 auto;
 }
 
 .login-container > .login {
+    margin: 0 auto;
     padding: 2vh 2vw;
     width: 30%;
     max-width: 500px;
@@ -34,7 +37,7 @@
     margin: auto;
     border: none;
     border-radius: 8px;
-    font-size: 2vw;
+    font-size: 1.75vw;
 }
 
 .login-container .login input:focus {
