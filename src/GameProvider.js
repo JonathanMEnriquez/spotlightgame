@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GameContext from './GameContext';
 import { data } from './contents.json';
+import { players } from './history.json';
 import firebase from './firebase.js';
 import Game from './GameClass';
 
@@ -25,6 +26,18 @@ class GameProvider extends Component {
     
     componentDidMount() {
         this.loadAssets();
+        console.log(players);
+        // First. Before adding code, I should add Chris and Rodrigo to see how it reacts.
+        for (let p in players) {
+            if (p !== 'No one') {
+                console.log(players[p])
+                // get players ref
+                const playersRef = firebase.database().ref(this.state.user + '/games' + p.id);
+                console.log(playersRef);
+            } else {
+                console.log('hello no one')
+            }
+        }
     }
 
     loadAssets() {
