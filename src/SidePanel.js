@@ -50,16 +50,14 @@ class SidePanel extends Component {
         if (filteredHints.length > 5) {
             filteredHints.length = 5;
         }
-        console.log(filteredHints);
+        
         this.setState({suggestions: filteredHints, guessValue: val});
     }
 
     handleGuessValueChange(event) {
-        console.log(event.target.className);
         const cl = event.target.className;
         this.setState({selectedClass: cl});
         this.filterHints(event.target.value);
-        console.log(document.getElementsByClassName(cl));
     }
 
     resetSuggestions() {
@@ -68,13 +66,24 @@ class SidePanel extends Component {
 
     handleKeyPress(event) {
         if (event.key === 'ArrowDown') {
-            console.log('lets go!');
+            // TODO
         }
+    }
+
+    setInputValue(val, cls) {
+        const input = document.getElementsByClassName(cls)[1];
+        input.value = val;
+        this.resetSuggestions();
+    }
+
+    handleOnBlur() {
+        setTimeout(this.resetSuggestions.bind(this), 100);
     }
 
     render() {
         const { players } = this.context;
         const { visible, closePanel } = this.props;
+
         return (
             <TransitionGroup component={null}>
             {visible &&
@@ -90,8 +99,8 @@ class SidePanel extends Component {
                         return (
                         <div className="guess-input" key={i}>
                             <div className={i}>{p.name}</div>
-                            <input className={i} onChange={event => this.handleGuessValueChange(event)} onBlur={this.resetSuggestions.bind(this)} onKeyDown={event => this.handleKeyPress(event)} />
-                            <Dropdown visible={i.toString() === this.state.selectedClass} data={this.state.suggestions} inputClass={i} />
+                            <input className={i} onChange={event => this.handleGuessValueChange(event)} onBlur={event => this.handleOnBlur()} onKeyDown={event => this.handleKeyPress(event)} />
+                            <Dropdown visible={i.toString() === this.state.selectedClass} data={this.state.suggestions} inputClass={i} onClickHandler={(val, cls) => this.setInputValue(val, cls)} />
                         </div>
                         )
                     })}

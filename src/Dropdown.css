@@ -7,18 +7,24 @@
 
 .dropdown-content {
     width: calc(100% - 8px);
-    padding: 4px 8px;
+    padding: 0;
     background: #585858;
     color: white;
     z-index: 1000;
     position: absolute;
     margin: 0;
-    margin: 2px 0;
     border-radius: 2px;
 }
 
-.dropdown .dropdown-content > p {
-    padding: 0.5vh 0;
+.dropdown .dropdown-content .selection {
     text-align: left;
     font-size: 1.25vw;
+    width: 100%;
+    cursor: pointer;
+    padding: 8px 0;
+    margin: 0;
+}
+
+.dropdown .dropdown-content .selection:hover {
+    background: rgba(255, 217, 0, 0.6);
 }
