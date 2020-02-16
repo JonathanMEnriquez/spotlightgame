@@ -39,13 +39,15 @@
 }
 
 .side-panel .guess-input {
-    padding: 2vh 2vw 2vh 1vw;
+    padding: 1vh 2vw 1vh 1vw;
     font-size: 1.5vw;
 }
 
 .side-panel .guess-input > input {
     width: 100%;
-    padding: .5vh .25vw;
+    padding: 1vh .5vw;
+    border: none;
+    border-radius: 2px;
 }
 
 .side-panel .side-submit {

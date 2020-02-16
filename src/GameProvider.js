@@ -20,7 +20,8 @@ class GameProvider extends Component {
         img: null,
         players: [],
         history: [],
-        guesses: {}
+        guesses: {},
+        hints: []
      }
     
     componentDidMount() {
@@ -36,7 +37,11 @@ class GameProvider extends Component {
                 const players = [];
                 for (let _id in val) {
                     val[_id]['_id'] = _id;
-                    val[_id].playing = true;
+                    if (val[_id].active) {
+                        val[_id].playing = true;
+                    } else {
+                        val[_id].playing = false;
+                    }
                     players.push(val[_id]);
                 }
                 this.setState({players: players});
@@ -55,6 +60,8 @@ class GameProvider extends Component {
                 const img = this.getImageInfo();
                 this.setState({img: img});
                 isLoaded();
+
+                this.setHints();
             })
             .catch(err => console.error(err));
     }
@@ -79,11 +86,31 @@ class GameProvider extends Component {
                     toggleUserPlayingState: this.togglePlayingStateOfPlayer.bind(this),
                     guesses: this.state.guesses,
                     updateGuesses: (guesses) => this.setState({guesses: guesses}),
+                    hints: this.state.hints,
                 }}
             >
                 {this.props.children}
             </GameContext.Provider>
          );
+    }
+
+    setHints() {
+        const banned = ['USA', 'U.S.A.', 'U.S.', 'US', 'United Stated of America', 'U.K.', 'UK', 'Australia'];
+        const seen = {};
+        const guesses = [];
+
+        this.state.history.forEach(h => {
+            if (h.guesses) {
+                for (let g in h.guesses) {
+                    const guess = h.guesses[g];
+                    if (!(guess in seen) && !banned.includes(guess)) {
+                        seen[guess] = 1;
+                        guesses.push(guess);
+                    }
+                }
+                this.setState({hints: guesses});
+            }
+        });
     }
 
     togglePlayingStateOfPlayer(name) {
@@ -109,13 +136,13 @@ class GameProvider extends Component {
     }
 
     getImageInfo() {
-        const entry = data[Math.floor(Math.random() * data.length)];
-        if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
-            return this.getImageInfo();
-        }
-        return entry;
+        // const entry = data[Math.floor(Math.random() * data.length)];
+        // if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
+        //     return this.getImageInfo();
+        // }
+        // return entry;
         //for testing
-        // return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
+        return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
     }
 
     getPlayerInfo() {

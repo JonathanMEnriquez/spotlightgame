@@ -5,11 +5,20 @@ import MainButton from './MainButton';
 import MapIcon from './img/map.png';
 import Close from './img/cross.png';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Dropdown from './Dropdown';
 
 class SidePanel extends Component {
-    shouldComponentUpdate(nextProps) {
-        return this.props.visible !== nextProps.visible;
+    state = {
+        suggestions: [],
+        guessValue: '',
+        selectedClass: '',
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.visible !== nextProps.visible
+            || this.state.suggestions !== nextState.suggestions;
+    }
+
     async saveGuesses() {
         const { goToPostGame } = this.props;
         const { updateGuesses } = this.context;
@@ -27,6 +36,42 @@ class SidePanel extends Component {
         await updateGuesses(guesses);
         goToPostGame();
     }
+
+    filterHints(val) {
+        const { hints } = this.props;
+        const re = new RegExp(val, 'i');
+        const filteredHints = hints.filter(e => {
+            if (re.test(e)) {
+                return e;
+            }
+
+            return null;
+        });
+        if (filteredHints.length > 5) {
+            filteredHints.length = 5;
+        }
+        console.log(filteredHints);
+        this.setState({suggestions: filteredHints, guessValue: val});
+    }
+
+    handleGuessValueChange(event) {
+        console.log(event.target.className);
+        const cl = event.target.className;
+        this.setState({selectedClass: cl});
+        this.filterHints(event.target.value);
+        console.log(document.getElementsByClassName(cl));
+    }
+
+    resetSuggestions() {
+        this.setState({suggestions: [], selectedClass: '', guessValue:''});
+    }
+
+    handleKeyPress(event) {
+        if (event.key === 'ArrowDown') {
+            console.log('lets go!');
+        }
+    }
+
     render() {
         const { players } = this.context;
         const { visible, closePanel } = this.props;
@@ -44,9 +89,10 @@ class SidePanel extends Component {
                         if (p.name === 'No one' || !p.playing) return null;
                         return (
                         <div className="guess-input" key={i}>
-                            <div>{p.name}</div>
-                            <input />
-                        </div>                    
+                            <div className={i}>{p.name}</div>
+                            <input className={i} onChange={event => this.handleGuessValueChange(event)} onBlur={this.resetSuggestions.bind(this)} onKeyDown={event => this.handleKeyPress(event)} />
+                            <Dropdown visible={i.toString() === this.state.selectedClass} data={this.state.suggestions} inputClass={i} />
+                        </div>
                         )
                     })}
                     </div>
