@@ -26,7 +26,7 @@
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
     "predeploy": "npm run react-build",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run react-build && gh-pages -d build",
     "electron-build": "electron-builder",
     "build": "npm run react-build && electron-builder",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
