@@ -17,6 +17,11 @@
     text-decoration: none;
 }
 
+.record > td > a.dead-link {
+    cursor: default;
+    color: rgba(0, 0, 0, 0.767);
+}
+
 .entry .guesses {
     text-align: center;
     color: #ebebeb;

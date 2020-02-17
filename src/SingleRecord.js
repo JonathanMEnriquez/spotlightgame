@@ -5,6 +5,10 @@ const SingleRecord = (props) => {
     const [displayGuesses, setDisplayGuesses] = useState(false);
     const { record } = props;
     const guessesKeys = Object.keys(record.guesses);
+    const hasValidLink = record.imgSrc.includes('.');
+    const href = hasValidLink ? record.imgSrc : '#';
+    const linkLabel = hasValidLink ? 'Link' : 'n/a';
+    const linkClass = hasValidLink ? '' : 'dead-link';
 
     const toggleGuessDisplay = () => {
         setDisplayGuesses(displayGuesses => !displayGuesses);
@@ -16,7 +20,9 @@ const SingleRecord = (props) => {
             <td>{record.date}</td>
             <td>{record.location}</td>
             <td>{record.winner}</td>
-            <td><a target="_blank" rel="noopener noreferrer" href={record.imgSrc}>Link</a></td>
+            <td>
+                <a className={linkClass} target="_blank" rel="noopener noreferrer" href={href}>{linkLabel}</a>
+            </td>
         </tr>
         <tr className={displayGuesses ? 'guesses' : 'hidden'}>
             <td colSpan={4}>
