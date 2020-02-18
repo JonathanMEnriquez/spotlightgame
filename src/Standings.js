@@ -17,15 +17,23 @@ const Standings = () => {
     }
 
     const getReigningChampion = (sortedHistory) => {
-        return sortedHistory[0].winner;
+        for (let i = 0; i < sortedHistory.length; i++) {
+            if (sortedHistory[i].winner !== 'SKIPPED') {
+                return sortedHistory[i].winner;
+            }
+        }
+        return '';
     }
 
     const getCurrentWinStreak = (sortedHistory) => {
         const champ = getReigningChampion(sortedHistory);
         let streak = 0;
 
-        while (streak < sortedHistory.length) {
-            if (champ === sortedHistory[streak].winner) {
+        for (let i = 0; i < sortedHistory.length; i++) {
+            if (sortedHistory[i].winner === 'SKIPPED') {
+                continue;
+            }
+            else if (champ === sortedHistory[i].winner) {
                 streak++;
             } else {
                 break;
@@ -47,6 +55,7 @@ const Standings = () => {
         <div className="standings">
             <img className="expand" src={Expand} alt="expand" onClick={toggleDisplayOfInfo.bind(this)} />
             {players.map((e, i) => {
+                console.log('hola ', reigningChamp);
                 if (e.name !== 'No one' && e.active) {
                     return (
                         <PlayerCard name={e.name} key={i} 
