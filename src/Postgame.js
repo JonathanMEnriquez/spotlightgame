@@ -22,8 +22,8 @@ class Postgame extends Component {
         const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
         const newGame = new Game(img.caption, img.img_src, winner, guesses);
-        // gamesRef.push(newGame);
-        // this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
+        gamesRef.push(newGame);
+        this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
     }
 
     startConfetti(winner) {
