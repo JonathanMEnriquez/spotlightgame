@@ -3,6 +3,7 @@ import './Button.css';
 
 const Button = (props) => {
     const { icon, clickHandler, src, alt, text, disabled } = props;
+    
     return (
         <div className="encasing-div">
             {icon &&

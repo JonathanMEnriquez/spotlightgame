@@ -16,18 +16,14 @@ class LiveGame extends Component {
 
     makeBtnGrpVisible() {
         if (this.state.timeout) {
-            //invalidate
-            clearTimeout(this.state.timeout);
-            this.setState({timeout: null});
+            this.invalidateTimeout();
         }
         this.setState({btnGroupVisible: true});
     }
 
     setTimeoutBtnVisible() {
         if (this.state.timeout) {
-            //invalidate
-            clearTimeout(this.state.timeout);
-            this.setState({timeout: null});
+            this.invalidateTimeout();
         }
         const nTimeout = setTimeout(() => this.setState({btnGroupVisible: false, timeout: null}),
             1200);
@@ -35,6 +31,12 @@ class LiveGame extends Component {
     }
 
     componentWillUnmount() {
+        clearTimeout(this.state.timeout);
+        this.setState({timeout: null});
+    }
+
+    invalidateTimeout() {
+        clearTimeout(this.state.timeout);
         this.setState({timeout: null});
     }
 
