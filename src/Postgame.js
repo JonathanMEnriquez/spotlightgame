@@ -5,6 +5,7 @@ import ButtonGroup from './ButtonGroup';
 import Game from './GameClass';
 import firebase from './firebase.js';
 import MainButton from './MainButton';
+import Confetti from './Confetti';
 
 class Postgame extends Component {
     state = {
@@ -16,12 +17,21 @@ class Postgame extends Component {
         this.setState({winnerDeclared: true});
         const { user, img, players, guesses } = this.context;
         const winner = ev.target.textContent;
+        this.startConfetti(winner);
         this.setState({congrats: `Congratulations to ${winner} for earning the spotlight!`});
         const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
         const newGame = new Game(img.caption, img.img_src, winner, guesses);
         gamesRef.push(newGame);
         this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
+    }
+
+    startConfetti(winner) {
+        if (winner !== 'No one') {
+            const con = new Confetti();
+            con.startConfetti();
+            setTimeout(() => con.stopConfetti(), 3000);
+        }
     }
 
     pushPlayerInfoToDB(winner, players, user) {
