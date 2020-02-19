@@ -14,18 +14,24 @@ class Postgame extends Component {
     }
     
     declareWinner(ev) {
-        const con = new Confetti();
-        con.startConfetti();
-        setTimeout(() => con.stopConfetti(), 3000);
         this.setState({winnerDeclared: true});
         const { user, img, players, guesses } = this.context;
         const winner = ev.target.textContent;
+        this.startConfetti(winner);
         this.setState({congrats: `Congratulations to ${winner} for earning the spotlight!`});
         const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
         const newGame = new Game(img.caption, img.img_src, winner, guesses);
         gamesRef.push(newGame);
         this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
+    }
+
+    startConfetti(winner) {
+        if (winner !== 'No one') {
+            const con = new Confetti();
+            con.startConfetti();
+            setTimeout(() => con.removeConfetti(), 3000);
+        }
     }
 
     pushPlayerInfoToDB(winner, players, user) {
