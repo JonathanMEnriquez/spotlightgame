@@ -5,6 +5,7 @@ import MainButton from './MainButton';
 import Standings from './Standings';
 import Spotlight from './img/spotlight.png';
 import History from './History';
+import Confetti from './Confetti';
 
 class Pregame extends Component {
     state = {
@@ -14,6 +15,9 @@ class Pregame extends Component {
     render() { 
         const { setToLiveMode, history } = this.context;
         const { imgLoaded } = this.props;
+
+        const con = new Confetti();
+        con.startConfetti();
 
         return (
             <div className="pregame">

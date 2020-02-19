@@ -23,6 +23,9 @@ class Confetti {
         this.particles = [];
         this.waveAngle = 0;
         this.context = null;
+
+        this.resetParticle = this.resetParticle.bind(this);
+        this.runAnimation = this.runAnimation.bind(this);
     }
 
     resetParticle(particle, width, height) {
@@ -58,8 +61,9 @@ class Confetti {
     }
     
     runAnimation() {
-		if (this.pause)
+		if (this.pause) {
 			return;
+        }
 		else if (this.particles.length === 0) {
 			this.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 			this.animationTimer = null;
@@ -125,7 +129,8 @@ class Confetti {
 			this.particles.push(this.resetParticle({}, width, height));
 		this.streamingConfetti = true;
 		this.pause = false;
-		this.runAnimation();
+        this.runAnimation.bind(this);
+        this.runAnimation();
 		if (timeout) {
 			window.setTimeout(this.stopConfetti, timeout);
 		}
@@ -201,3 +206,5 @@ class Confetti {
 		}
 	}
 }
+
+export default Confetti;
