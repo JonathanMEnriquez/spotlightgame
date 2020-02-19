@@ -5,6 +5,7 @@ import ButtonGroup from './ButtonGroup';
 import Game from './GameClass';
 import firebase from './firebase.js';
 import MainButton from './MainButton';
+import Confetti from './Confetti';
 
 class Postgame extends Component {
     state = {
@@ -13,6 +14,9 @@ class Postgame extends Component {
     }
     
     declareWinner(ev) {
+        const con = new Confetti();
+        con.startConfetti();
+        setTimeout(() => con.stopConfetti(), 3000);
         this.setState({winnerDeclared: true});
         const { user, img, players, guesses } = this.context;
         const winner = ev.target.textContent;
