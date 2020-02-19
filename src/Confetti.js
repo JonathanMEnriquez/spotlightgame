@@ -1,6 +1,6 @@
 class Confetti {
     constructor() {
-        this.frameInterval = 10;	//the confetti animation frame interval in milliseconds
+        this.frameInterval = 15;	//the confetti animation frame interval in milliseconds
         this.maxCount = 150;		//set max confetti count
         this.speed = 2;			//set the particle animation speed
         this.alpha = 10;			//the alpha opacity of the confetti (between 0 and 1, where 1 is opaque and 0 is invisible)
