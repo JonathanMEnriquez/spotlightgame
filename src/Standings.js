@@ -55,7 +55,6 @@ const Standings = () => {
         <div className="standings">
             <img className="expand" src={Expand} alt="expand" onClick={toggleDisplayOfInfo.bind(this)} />
             {players.map((e, i) => {
-                console.log('hola ', reigningChamp);
                 if (e.name !== 'No one' && e.active) {
                     return (
                         <PlayerCard name={e.name} key={i} 
