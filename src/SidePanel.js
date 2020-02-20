@@ -6,17 +6,20 @@ import MapIcon from './img/map.png';
 import Close from './img/cross.png';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Dropdown from './Dropdown';
+import { stat } from 'fs';
 
 class SidePanel extends Component {
     state = {
         suggestions: [],
         guessValue: '',
         selectedClass: '',
+        hasFocusElem: null,
     }
 
     shouldComponentUpdate(nextProps, nextState) {
         return this.props.visible !== nextProps.visible
-            || this.state.suggestions !== nextState.suggestions;
+            || this.state.suggestions !== nextState.suggestions
+            || this.state.hasFocusElem !== nextState.hasFocusElem;
     }
 
     async saveGuesses() {
@@ -56,17 +59,43 @@ class SidePanel extends Component {
 
     handleGuessValueChange(event) {
         const cl = event.target.className;
-        this.setState({selectedClass: cl});
+        this.setState({selectedClass: cl, hasFocusElem: null});
         this.filterHints(event.target.value);
     }
 
     resetSuggestions() {
-        this.setState({suggestions: [], selectedClass: '', guessValue:''});
+        this.setState({suggestions: [], selectedClass: '', guessValue: '', hasFocusElem: null});
     }
 
     handleKeyPress(event) {
-        if (event.key === 'ArrowDown') {
-            // TODO
+        const k = event.key;
+        const downPressed = k === 'ArrowDown';
+        const upPressed = k === 'ArrowUp';
+        const enterPressed = k === 'Enter';
+
+        if (!this.state.hasFocusElem) {
+            if (downPressed) {
+                if (this.state.suggestions.length) {
+                    this.setState({hasFocusElem: {'idx': 0, 'val': this.state.suggestions[0]}});
+                }
+            }
+        } else if (downPressed || upPressed) {
+            const { idx } = this.state.hasFocusElem;
+            let nIdx;
+            if (downPressed) {
+                nIdx = idx + 1;
+            } else if (upPressed) {
+                nIdx = idx - 1;
+            }
+
+            if (nIdx < 0) {
+                this.setState({hasFocusElem: null});
+            } else if (nIdx < this.state.suggestions.length) {
+                this.setState({hasFocusElem: {'idx': nIdx, 'val': this.state.suggestions[nIdx]}});
+            }
+        } else if (enterPressed) {
+            const { idx, val } = this.state.hasFocusElem;
+            this.setInputValue(val, idx.toString());
         }
     }
 
@@ -78,6 +107,7 @@ class SidePanel extends Component {
 
     handleOnBlur() {
         setTimeout(this.resetSuggestions.bind(this), 100);
+        this.setState({hasFocusElem: null});
     }
 
     render() {
@@ -96,12 +126,14 @@ class SidePanel extends Component {
                     <div className="guesses">
                     {players.map((p, i) => {
                         if (p.name === 'No one' || !p.playing) return null;
+                        const visible = i.toString() === this.state.selectedClass;
+
                         return (
-                        <div className="guess-input" key={i}>
-                            <div className={i}>{p.name}</div>
-                            <input className={i} onChange={event => this.handleGuessValueChange(event)} onBlur={event => this.handleOnBlur()} onKeyDown={event => this.handleKeyPress(event)} />
-                            <Dropdown visible={i.toString() === this.state.selectedClass} data={this.state.suggestions} inputClass={i} onClickHandler={(val, cls) => this.setInputValue(val, cls)} />
-                        </div>
+                            <div className="guess-input" key={i}>
+                                <div className={i}>{p.name}</div>
+                                <input className={i} onChange={event => this.handleGuessValueChange(event)} onBlur={event => this.handleOnBlur()} onKeyDown={event => this.handleKeyPress(event)} />
+                                <Dropdown visible={visible} hasFocus={this.state.hasFocusElem} data={this.state.suggestions} inputClass={i} onClickHandler={(val, cls) => this.setInputValue(val, cls)} />
+                            </div>
                         )
                     })}
                     </div>
