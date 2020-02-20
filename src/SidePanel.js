@@ -71,6 +71,7 @@ class SidePanel extends Component {
         const downPressed = k === 'ArrowDown';
         const upPressed = k === 'ArrowUp';
         const enterPressed = k === 'Enter';
+        const { selectedClass } = this.state;
 
         if (!this.state.hasFocusElem) {
             if (downPressed) {
@@ -92,9 +93,9 @@ class SidePanel extends Component {
             } else if (nIdx < this.state.suggestions.length) {
                 this.setState({hasFocusElem: {'idx': nIdx, 'val': this.state.suggestions[nIdx]}});
             }
-        } else if (enterPressed) {
-            const { idx, val } = this.state.hasFocusElem;
-            this.setInputValue(val, idx.toString());
+        } else if (enterPressed && selectedClass) {
+            const { val } = this.state.hasFocusElem;
+            this.setInputValue(val, selectedClass);
         }
     }
 
