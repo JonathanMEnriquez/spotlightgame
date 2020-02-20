@@ -48,6 +48,21 @@ class Postgame extends Component {
         });
     }
 
+    setGoogleSrc() {
+        const { img } = this.context;
+        return `https://www.google.com/maps/embed/v1/place?q=${img.caption}&zoom=7&key=AIzaSyC1aEMKRB6A4_rZq8uwov5Q_uRkYy1TK0Q`;
+    }
+
+    getGoogleWidth() {
+        const width = window.innerWidth * 0.4;
+        return `${width}`;
+    }
+
+    getGoogleHeight() {
+        const height = window.innerHeight * 0.25;
+        return `${height}`;
+    }
+
     render() {
         const { img, players, resetGame } = this.context;
         const btnGroupEntries = [];
@@ -66,8 +81,19 @@ class Postgame extends Component {
                 {!this.state.winnerDeclared &&
                 <div className="caption">{img.caption}</div>
                 }
+                {!this.state.winnerDeclared &&
                 <h2>Winner:</h2>
-                <ButtonGroup elements={btnGroupEntries} disabled={this.state.winnerDeclared} icon={false} centered={true} />
+                }
+                <div className={this.state.winnerDeclared ? 'hidden' : ''}>
+                    <ButtonGroup elements={btnGroupEntries} disabled={this.state.winnerDeclared} icon={false} centered={true} />
+                </div>
+                <div className={!this.state.winnerDeclared ? 'hidden' : 'google'}>
+                    <iframe title="google" width={this.getGoogleWidth()} height={this.getGoogleHeight()} frameBorder="0"
+                        src={this.setGoogleSrc()} allowFullScreen></iframe>
+                </div>
+                {this.state.winnerDeclared && 
+                <span className="google-warning">If no specific location is displayed, Maps could not locate based on the caption.</span>
+                }
                 {this.state.winnerDeclared &&
                     <div className="main-button-container">
                         <MainButton actionTitle="Home" simple={false} clickHandler={resetGame} />
