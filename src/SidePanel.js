@@ -6,7 +6,6 @@ import MapIcon from './img/map.png';
 import Close from './img/cross.png';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Dropdown from './Dropdown';
-import { stat } from 'fs';
 
 class SidePanel extends Component {
     state = {
