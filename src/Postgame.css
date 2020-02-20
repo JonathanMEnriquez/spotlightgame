@@ -3,7 +3,7 @@
     height: 100%;
     background-color: white;
     opacity: 0.75;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .postgame h2 {
@@ -14,9 +14,9 @@
 .postgame .caption {
     width: 80%;
     margin: 0 auto;
-    font-size: 24px;
+    font-size: 2.5vw;
     font-weight: normal;
-    padding: 100px 0;
+    padding: 15vh 0;
     text-align: center;
     background: black;
     border: none;
@@ -26,9 +26,31 @@
 
 .postgame .main-button-container {
     width: 100%;
-    z-index: 1000;
+    z-index: 50;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 4.5vh;
+}
+
+.postgame .hidden {
+    display: none;
+}
+
+.postgame .google {
+    margin: 0 auto;
+    padding: 2vh 0 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.postgame .google-warning {
+    display: block;
+    font-size: .8vw;
+    padding-top: 2px;
+    padding-bottom: 2vh;
+    z-index: 1000;
+    color: black;
+    text-align: center;
 }
