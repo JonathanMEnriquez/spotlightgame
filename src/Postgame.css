@@ -4,6 +4,9 @@
     background-color: white;
     opacity: 0.75;
     overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .postgame h2 {
