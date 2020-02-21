@@ -66,34 +66,6 @@ class GameProvider extends Component {
             .catch(err => console.error(err));
     }
 
-    render() { 
-        return ( 
-            <GameContext.Provider
-                value={{
-                    modes: this.state.gameModes,
-                    mode: this.state.gameMode,
-                    setToPregameMode: () => this.setState({gameMode: this.state.PREGAME}),
-                    setToLiveMode: () => this.setState({gameMode: this.state.gameModes.LIVEGAME}),
-                    setToPostgameMode: () => this.setState({gameMode: this.state.gameModes.POSTGAME}),
-                    img: this.state.img,
-                    getNewImage: this.getNewImage.bind(this),
-                    skipImage: this.skipImage.bind(this),
-                    players: this.state.players,
-                    history: this.state.history,
-                    resetGame: this.resetGame.bind(this),
-                    user: this.state.user,
-                    setUser: (userInfo) => this.setState({user: userInfo}),
-                    toggleUserPlayingState: this.togglePlayingStateOfPlayer.bind(this),
-                    guesses: this.state.guesses,
-                    updateGuesses: (guesses) => this.setState({guesses: guesses}),
-                    hints: this.state.hints,
-                }}
-            >
-                {this.props.children}
-            </GameContext.Provider>
-         );
-    }
-
     setHints() {
         const banned = ['USA', 'U.S.A.', 'U.S.', 'US', 'United Stated of America', 'U.K.', 'UK', 'Australia'];
         const seen = {};
@@ -157,6 +129,34 @@ class GameProvider extends Component {
 
     resetGame() {
         window.location.reload();
+    }
+
+    render() { 
+        return ( 
+            <GameContext.Provider
+                value={{
+                    modes: this.state.gameModes,
+                    mode: this.state.gameMode,
+                    setToPregameMode: () => this.setState({gameMode: this.state.PREGAME}),
+                    setToLiveMode: () => this.setState({gameMode: this.state.gameModes.LIVEGAME}),
+                    setToPostgameMode: () => this.setState({gameMode: this.state.gameModes.POSTGAME}),
+                    img: this.state.img,
+                    getNewImage: this.getNewImage.bind(this),
+                    skipImage: this.skipImage.bind(this),
+                    players: this.state.players,
+                    history: this.state.history,
+                    resetGame: this.resetGame.bind(this),
+                    user: this.state.user,
+                    setUser: (userInfo) => this.setState({user: userInfo}),
+                    toggleUserPlayingState: this.togglePlayingStateOfPlayer.bind(this),
+                    guesses: this.state.guesses,
+                    updateGuesses: (guesses) => this.setState({guesses: guesses}),
+                    hints: this.state.hints,
+                }}
+            >
+                {this.props.children}
+            </GameContext.Provider>
+         );
     }
 }
  

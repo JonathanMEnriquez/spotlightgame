@@ -1,32 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from './Button';
 import './ButtonGroup.css';
 
-class ButtonGroup extends Component {
-    render() {
-        const props = this.props;
-        const elements = props.elements;
-        const className = props.centered ? 'centered' : 'btn-group';
-
-        return ( 
-            <div className={className}
-                onMouseEnter={props.mouseEnter}
-                onMouseLeave={props.mouseLeave}>
-                {elements.map((el, i) => {
-                    return (
-                    <Button
-                        key={i}
-                        src={el.src} 
-                        icon={props.icon} 
-                        clickHandler={el.clickHandler}
-                        alt={el.alt}
-                        text={el.text}
-                        disabled={props.disabled}
-                    />)
-                })}
-            </div>
-        );
-    }
+const ButtonGroup = (props) => {
+    const { elements, centered, icon, mouseEnter, mouseLeave, disabled } = props;
+    const className = centered ? 'centered' : 'btn-group';
+    
+    return ( 
+        <div className={className}
+            onMouseEnter={mouseEnter}
+            onMouseLeave={mouseLeave}>
+            {elements.map((el, i) => {
+                return (
+                <Button
+                    key={i}
+                    src={el.src} 
+                    icon={icon} 
+                    clickHandler={el.clickHandler}
+                    alt={el.alt}
+                    text={el.text}
+                    disabled={disabled}
+                />)
+            })}
+        </div>
+    );
 }
  
 export default ButtonGroup;

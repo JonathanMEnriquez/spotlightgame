@@ -51,3 +51,7 @@
 .entry .guesses .guess-row .guess {
     font-weight: 300;
 }
+
+.entry .guesses .guess-row .winner {
+    color: gold;
+}

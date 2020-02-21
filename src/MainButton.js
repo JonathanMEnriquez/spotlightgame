@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './MainButton.css';
 
-class MainButton extends Component {
-    render() {
-        const props = this.props;
-        return ( 
+const MainButton = (props) => {
+    const { loading, simple, clickHandler, actionTitle } = props;
+
+    return ( 
         <button
-            disabled={props.loading}
-            className={props.simple ? 'simple' : 'main-button'}
-            onClick={props.clickHandler}>
-            {this.props.actionTitle}
+            disabled={loading}
+            className={simple ? 'simple' : 'main-button'}
+            onClick={clickHandler}>
+            {actionTitle}
         </button>
-         );
-    }
+    );
 }
  
 export default MainButton;

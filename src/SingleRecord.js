@@ -15,28 +15,29 @@ const SingleRecord = (props) => {
     }
 
     return (
-    <tbody className="entry">
-        <tr className="record" onClick={toggleGuessDisplay}>
-            <td>{record.date}</td>
-            <td>{record.location}</td>
-            <td>{record.winner}</td>
-            <td>
-                <a className={linkClass} target="_blank" rel="noopener noreferrer" href={href}>{linkLabel}</a>
-            </td>
-        </tr>
-        <tr className={displayGuesses ? 'guesses' : 'hidden'}>
-            <td colSpan={4}>
-                {guessesKeys.map((k, i) => {
-                    return (
-                    <span key={i} className="guess-row">
-                        <span className="guesser">{`${k}: `}</span>
-                        <span className="guess">{`${record.guesses[k]}${i === guessesKeys.length - 1 ? '' : ', '}`}</span>
-                    </span>
-                    )
-                })}
-            </td>
-        </tr>
-    </tbody>
+        <tbody className="entry">
+            <tr className="record" onClick={toggleGuessDisplay}>
+                <td>{record.date}</td>
+                <td>{record.location}</td>
+                <td>{record.winner}</td>
+                <td>
+                    <a className={linkClass} target="_blank" rel="noopener noreferrer" href={href}>{linkLabel}</a>
+                </td>
+            </tr>
+            <tr className={displayGuesses ? 'guesses' : 'hidden'}>
+                <td colSpan={4}>
+                    {guessesKeys.map((k, i) => {
+                        return (
+                        <span key={i} className="guess-row">
+                            <span className={record.winner === k ? "guesser winner" : "guesser"}>{`${k}: `}</span>
+                            <span className={record.winner === k ? "guess winner" : "guess"}>{record.guesses[k]}</span>
+                            <span>{`${i === guessesKeys.length - 1 ? '' : ', '}`}</span>
+                        </span>
+                        )
+                    })}
+                </td>
+            </tr>
+        </tbody>
     )
 }
 
