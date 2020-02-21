@@ -31,8 +31,7 @@ class LiveGame extends Component {
     }
 
     componentWillUnmount() {
-        clearTimeout(this.state.timeout);
-        this.setState({timeout: null});
+        this.invalidateTimeout();
     }
 
     invalidateTimeout() {
