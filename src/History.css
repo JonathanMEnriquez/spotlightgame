@@ -11,6 +11,7 @@
     width: 100%;
     overflow-y: auto;
     height: 45vh;
+    text-align: center;
 }
 
 .history table {
