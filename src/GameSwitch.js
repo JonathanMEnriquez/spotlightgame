@@ -23,28 +23,29 @@ class GameSwitch extends Component {
 
     render() {
         const game = this.context;
+        const { mode, modes, img, user } = game;
         
         return (
             <div className="main">
-                {game.user && game.img &&
-                    <img className={game.mode !== game.modes.PREGAME ? 'game-img' : 'hidden'}
-                    src={game.img.img_src}
+                {user && img &&
+                    <img className={mode !== modes.PREGAME ? 'game-img' : 'hidden'}
+                    src={img.img_src}
                     alt='game img'
                     onLoad={this.handleImgLoaded.bind(this)}
                     onError={this.handleImgError.bind(this)} />
                 }
 
-                {!game.user &&
+                {!user &&
                     <Login />
                 }
 
-                {game.user && game.mode === game.modes.PREGAME && 
+                {user && mode === modes.PREGAME && 
                     <Pregame imgLoaded={this.state.imgLoaded} />
                 }
-                {game.user && game.mode === game.modes.LIVEGAME &&
+                {user && mode === modes.LIVEGAME &&
                     <LiveGame />
                 }
-                {game.user && game.mode === game.modes.POSTGAME &&
+                {user && mode === modes.POSTGAME &&
                     <Postgame />
                 }
             </div>

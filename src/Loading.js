@@ -44,29 +44,31 @@ class Loading extends Component {
     }
 
     render() {
+        const { isLoaded, displayLogin, loggedIn, user } = this.state;
         let gameSwitch;
-        if (this.state.isLoaded) {
+        if (isLoaded) {
             gameSwitch = this.renderGameSwitch();
         }
+
         return (
             <div className="loading-screen">
-                {!this.state.isLoaded &&
-                <img className={this.state.displayLogin ? 'logo higher' : 'logo'}
+                {!isLoaded &&
+                <img className={displayLogin ? 'logo higher' : 'logo'}
                 src={Spotlight} alt="logo" />
                 }
-                {!this.state.displayLogin && !this.state.isLoaded &&
+                {!displayLogin && !isLoaded &&
                 <div>
                     <p>Loading...</p>
                     <img className="loading" src={Bouncing} alt="loading..." />
                 </div>
                 }
 
-                {this.state.displayLogin &&
+                {displayLogin &&
                     <Login setUser={this.userIsLoggedIn.bind(this)} />
                 }
                 
-                {this.state.loggedIn && this.state.user &&
-                <GameProvider isLoaded={this.appIsLoaded.bind(this)} user={this.state.user}>
+                {loggedIn && user &&
+                <GameProvider isLoaded={this.appIsLoaded.bind(this)} user={user}>
                     {gameSwitch}
                 </GameProvider>
                 }

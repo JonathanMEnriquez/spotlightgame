@@ -5,6 +5,7 @@ import SingleRecord from './SingleRecord';
 
 const History = (props) => {
     const { history, shouldDisplay, hideHistory } = props;
+
     const setSingleRecord = (record, key) => {
         const recordWasSkipped = record.winner === 'SKIPPED';
         return recordWasSkipped
