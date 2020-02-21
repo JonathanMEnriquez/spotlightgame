@@ -23,6 +23,7 @@ class GameSwitch extends Component {
 
     render() {
         const game = this.context;
+        
         return (
             <div className="main">
                 {game.user && game.img &&

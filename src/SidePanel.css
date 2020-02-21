@@ -3,10 +3,11 @@
     height: 100%;
     min-width: 300px;
     position: absolute;
-    top: 0%;
-    left: 73.5vw;
+    top: 0;
+    right: 0;
     background: #2b2b2b;
     z-index: 1000;
+    text-align: left;
 }
 
 .side-panel .map {
@@ -39,13 +40,15 @@
 }
 
 .side-panel .guess-input {
-    padding: 2vh 2vw 2vh 1vw;
+    padding: 1vh 2vw 1vh 1vw;
     font-size: 1.5vw;
 }
 
 .side-panel .guess-input > input {
     width: 100%;
-    padding: .5vh .25vw;
+    padding: 1vh .5vw;
+    border: none;
+    border-radius: 2px;
 }
 
 .side-panel .side-submit {

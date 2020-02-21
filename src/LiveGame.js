@@ -13,6 +13,7 @@ class LiveGame extends Component {
         timeout: null,
         sidePanelVisible: false
     }
+
     makeBtnGrpVisible() {
         if (this.state.timeout) {
             //invalidate
@@ -21,6 +22,7 @@ class LiveGame extends Component {
         }
         this.setState({btnGroupVisible: true});
     }
+
     setTimeoutBtnVisible() {
         if (this.state.timeout) {
             //invalidate
@@ -31,14 +33,17 @@ class LiveGame extends Component {
             1200);
         this.setState({timeout: nTimeout});
     }
+
     componentWillUnmount() {
         this.setState({timeout: null});
     }
+
     toggleSidePanelVisibility() {
         this.setState({sidePanelVisible: !this.state.sidePanelVisible});
     }
+
     render() {
-        const { setToPostgameMode, skipImage } = this.context;
+        const { setToPostgameMode, skipImage, hints } = this.context;
         const { sidePanelVisible } = this.state;
         const btnGroupEntries = [
             {alt: 'globe', src: globe, clickHandler: this.toggleSidePanelVisibility.bind(this)},
@@ -46,7 +51,7 @@ class LiveGame extends Component {
         ]
         return ( 
             <div className="live-game">
-                <SidePanel goToPostGame={setToPostgameMode} closePanel={this.toggleSidePanelVisibility.bind(this)} visible={sidePanelVisible} />
+                <SidePanel goToPostGame={setToPostgameMode} closePanel={this.toggleSidePanelVisibility.bind(this)} visible={sidePanelVisible} hints={hints} />
                 <div className="footer-actions">
                     <img src={gears}
                         onMouseEnter={this.makeBtnGrpVisible.bind(this)}

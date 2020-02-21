@@ -11,6 +11,7 @@ class Pregame extends Component {
         showHistory: false,
         showLogin: false
     }
+    
     render() { 
         const { setToLiveMode, history } = this.context;
         const { imgLoaded } = this.props;

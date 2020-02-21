@@ -5,6 +5,7 @@ import ButtonGroup from './ButtonGroup';
 import Game from './GameClass';
 import firebase from './firebase.js';
 import MainButton from './MainButton';
+import Confetti from './Confetti';
 
 class Postgame extends Component {
     state = {
@@ -16,12 +17,21 @@ class Postgame extends Component {
         this.setState({winnerDeclared: true});
         const { user, img, players, guesses } = this.context;
         const winner = ev.target.textContent;
+        this.startConfetti(winner);
         this.setState({congrats: `Congratulations to ${winner} for earning the spotlight!`});
         const gamesRef = firebase.database().ref(user + '/games');
         const winningPlayerInfo = players.find(e => e.name === winner);
         const newGame = new Game(img.caption, img.img_src, winner, guesses);
         gamesRef.push(newGame);
         this.pushPlayerInfoToDB(winningPlayerInfo, players, user);
+    }
+
+    startConfetti(winner) {
+        if (winner !== 'No one') {
+            const con = new Confetti();
+            con.startConfetti();
+            setTimeout(() => con.stopConfetti(), 3000);
+        }
     }
 
     pushPlayerInfoToDB(winner, players, user) {
@@ -36,6 +46,21 @@ class Postgame extends Component {
                 
             }
         });
+    }
+
+    setGoogleSrc() {
+        const { img } = this.context;
+        return `https://www.google.com/maps/embed/v1/place?q=${img.caption}&zoom=7&key=AIzaSyC1aEMKRB6A4_rZq8uwov5Q_uRkYy1TK0Q`;
+    }
+
+    getGoogleWidth() {
+        const width = window.innerWidth * 0.4;
+        return `${width}`;
+    }
+
+    getGoogleHeight() {
+        const height = window.innerHeight * 0.25;
+        return `${height}`;
     }
 
     render() {
@@ -56,8 +81,19 @@ class Postgame extends Component {
                 {!this.state.winnerDeclared &&
                 <div className="caption">{img.caption}</div>
                 }
+                {!this.state.winnerDeclared &&
                 <h2>Winner:</h2>
-                <ButtonGroup elements={btnGroupEntries} disabled={this.state.winnerDeclared} icon={false} centered={true} />
+                }
+                <div className={this.state.winnerDeclared ? 'hidden' : ''}>
+                    <ButtonGroup elements={btnGroupEntries} disabled={this.state.winnerDeclared} icon={false} centered={true} />
+                </div>
+                <div className={!this.state.winnerDeclared ? 'hidden' : 'google'}>
+                    <iframe title="google" width={this.getGoogleWidth()} height={this.getGoogleHeight()} frameBorder="0"
+                        src={this.setGoogleSrc()} allowFullScreen></iframe>
+                </div>
+                {this.state.winnerDeclared && 
+                <span className="google-warning">If no specific location is displayed, Maps could not locate based on the caption.</span>
+                }
                 {this.state.winnerDeclared &&
                     <div className="main-button-container">
                         <MainButton actionTitle="Home" simple={false} clickHandler={resetGame} />
