@@ -57,3 +57,19 @@
     color: black;
     text-align: center;
 }
+
+.postgame .guesses-caption {
+    color: #171717;
+    font-size: 12px;
+    padding-top: 0.25vh;
+}
+
+.postgame .guesses-caption .guess-caption {
+    width: 10vw;
+    padding-right: 1vw;
+    display: inline-block;
+}
+
+.postgame .small-caption {
+    color: black;
+}

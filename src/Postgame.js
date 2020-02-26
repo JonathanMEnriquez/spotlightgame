@@ -64,16 +64,21 @@ class Postgame extends Component {
     }
 
     render() {
-        const { img, players, resetGame } = this.context;
+        const { img, players, resetGame, guesses } = this.context;
         const btnGroupEntries = [];
+        const sortedGuesses = [];
         Object.values(players).forEach(p => {
             if (p.playing) {
                 btnGroupEntries.push({text: p.name, clickHandler: this.declareWinner.bind(this)});
+                sortedGuesses.push(guesses[p.name]);
             }
         });
 
         return (
             <div className="postgame">
+                {this.state.winnerDeclared &&
+                <p className="small-caption">{img.caption}</p>
+                }
                 <h2>Answer:</h2>
                 {this.state.winnerDeclared && 
                 <div className="caption">{this.state.congrats}</div>
@@ -86,6 +91,11 @@ class Postgame extends Component {
                 }
                 <div className={this.state.winnerDeclared ? 'hidden' : ''}>
                     <ButtonGroup elements={btnGroupEntries} disabled={this.state.winnerDeclared} icon={false} centered={true} />
+                    <div className="guesses-caption">
+                        {sortedGuesses.map((g, i) => {
+                            return <span key={i} className="guess-caption">{g}</span>
+                        })}
+                    </div>
                 </div>
                 <div className={!this.state.winnerDeclared ? 'hidden' : 'google'}>
                     <iframe title="google" width={this.getGoogleWidth()} height={this.getGoogleHeight()} frameBorder="0"
