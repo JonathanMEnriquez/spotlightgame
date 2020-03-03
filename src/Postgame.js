@@ -6,6 +6,7 @@ import Game from './GameClass';
 import firebase from './firebase.js';
 import MainButton from './MainButton';
 import Confetti from './Confetti';
+import Cancel from './img/signal.png';
 
 class Postgame extends Component {
     state = {
@@ -79,15 +80,14 @@ class Postgame extends Component {
                 {this.state.winnerDeclared &&
                 <p className="small-caption">{img.caption}</p>
                 }
-                <h2>Answer:</h2>
                 {this.state.winnerDeclared && 
                 <div className="caption">{this.state.congrats}</div>
                 }
                 {!this.state.winnerDeclared &&
-                <div className="caption">{img.caption}</div>
-                }
-                {!this.state.winnerDeclared &&
-                <p className="skip" onClick={skipImageAndReload}>SKIP IMAGE</p>
+                <div className="caption">
+                    <img className="skip" src={Cancel} alt="Skip" onClick={skipImageAndReload} />
+                    {img.caption}
+                </div>
                 }
                 <div className={this.state.winnerDeclared ? 'hidden' : ''}>
                     <ButtonGroup elements={btnGroupEntries} disabled={this.state.winnerDeclared} icon={false} centered={true} />
@@ -97,7 +97,7 @@ class Postgame extends Component {
                         })}
                     </div>
                 </div>
-                <div className={!this.state.winnerDeclared ? 'hidden' : 'google'}>
+                <div className={!this.state.winnerDeclared ? 'google' : 'google'}>
                     <iframe title="google" width={this.getGoogleWidth()} height={this.getGoogleHeight()} frameBorder="0"
                         src={this.setGoogleSrc()} allowFullScreen></iframe>
                 </div>

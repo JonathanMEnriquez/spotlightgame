@@ -11,13 +11,20 @@
 }
 
 .pregame .pregame-grid .footer {
-    grid-column: 1 / 4;
-    grid-row: 3 / 4;
+    position: absolute;
+    bottom: 0;
+    left: 4vw;
     font-style: italic;
     color: rgb(184, 183, 183);
     font-size: 2vw;
     padding-top: 8vh;
     padding-left: 2vw;
+}
+
+@media only screen and (max-height: 400px) {
+    .pregame .pregame-grid .footer {
+        display: none;
+    }
 }
 
 .header {

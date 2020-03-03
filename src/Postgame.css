@@ -16,7 +16,9 @@
 
 .postgame .caption {
     width: 80%;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 2vh;
+    margin-bottom: 4vh;
     font-size: 2.5vw;
     font-weight: normal;
     padding: 15vh 0;
@@ -42,7 +44,7 @@
 
 .postgame .google {
     margin: 0 auto;
-    padding: 2vh 0 0;
+    padding: 4vh 0 0;
     display: flex;
     justify-content: center;
     z-index: 1000;
@@ -77,12 +79,10 @@
 .postgame .skip {
     cursor: pointer;
     color: rgba(216, 12, 12, 0.781);
-    text-align: right;
-    width: 85%;
-    position: relative;
-    top: -2vh;
-    font-size: 1vw;
-    font-weight: bold;
+    width: 2vw;
+    position: absolute;
+    top: 4vh;
+    right: 11vw;
 }
 
 .postgame .skip:hover {
