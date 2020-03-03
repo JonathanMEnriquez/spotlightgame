@@ -100,6 +100,13 @@ class GameProvider extends Component {
         this.setState({img: img});
     }
 
+    skipImageAndReload() {
+        const gamesRef = firebase.database().ref(this.state.user + '/games');
+        const skippedGame = new Game(this.state.img.caption, this.state.img.img_src, 'SKIPPED', true);
+        gamesRef.push(skippedGame);
+        this.resetGame();
+    }
+
     skipImage() {
         const gamesRef = firebase.database().ref(this.state.user + '/games');
         const skippedGame = new Game(this.state.img.caption, this.state.img.img_src, 'SKIPPED', true);
@@ -143,6 +150,7 @@ class GameProvider extends Component {
                     img: this.state.img,
                     getNewImage: this.getNewImage.bind(this),
                     skipImage: this.skipImage.bind(this),
+                    skipImageAndReload: this.skipImageAndReload.bind(this),
                     players: this.state.players,
                     history: this.state.history,
                     resetGame: this.resetGame.bind(this),

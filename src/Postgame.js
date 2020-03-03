@@ -64,7 +64,7 @@ class Postgame extends Component {
     }
 
     render() {
-        const { img, players, resetGame, guesses } = this.context;
+        const { img, players, resetGame, guesses, skipImageAndReload } = this.context;
         const btnGroupEntries = [];
         const sortedGuesses = [];
         Object.values(players).forEach(p => {
@@ -87,7 +87,7 @@ class Postgame extends Component {
                 <div className="caption">{img.caption}</div>
                 }
                 {!this.state.winnerDeclared &&
-                <h2>Winner:</h2>
+                <p className="skip" onClick={skipImageAndReload}>SKIP IMAGE</p>
                 }
                 <div className={this.state.winnerDeclared ? 'hidden' : ''}>
                     <ButtonGroup elements={btnGroupEntries} disabled={this.state.winnerDeclared} icon={false} centered={true} />
