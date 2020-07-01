@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/spotlightgame/static/css/main.a98ca6e0.chunk.css",
-    "main.js": "/spotlightgame/static/js/main.a91962f0.chunk.js",
-    "main.js.map": "/spotlightgame/static/js/main.a91962f0.chunk.js.map",
+    "main.css": "/spotlightgame/static/css/main.0474eca0.chunk.css",
+    "main.js": "/spotlightgame/static/js/main.216a4d45.chunk.js",
+    "main.js.map": "/spotlightgame/static/js/main.216a4d45.chunk.js.map",
     "runtime-main.js": "/spotlightgame/static/js/runtime-main.91b3574a.js",
     "runtime-main.js.map": "/spotlightgame/static/js/runtime-main.91b3574a.js.map",
-    "static/js/2.7b1023d7.chunk.js": "/spotlightgame/static/js/2.7b1023d7.chunk.js",
-    "static/js/2.7b1023d7.chunk.js.map": "/spotlightgame/static/js/2.7b1023d7.chunk.js.map",
+    "static/js/2.a60a1b70.chunk.js": "/spotlightgame/static/js/2.a60a1b70.chunk.js",
+    "static/js/2.a60a1b70.chunk.js.map": "/spotlightgame/static/js/2.a60a1b70.chunk.js.map",
     "index.html": "/spotlightgame/index.html",
-    "precache-manifest.fe373cc4c5d3b82034a4908080fc0559.js": "/spotlightgame/precache-manifest.fe373cc4c5d3b82034a4908080fc0559.js",
+    "precache-manifest.edc24e4c2151f78702b90cd863c59510.js": "/spotlightgame/precache-manifest.edc24e4c2151f78702b90cd863c59510.js",
     "service-worker.js": "/spotlightgame/service-worker.js",
-    "static/css/main.a98ca6e0.chunk.css.map": "/spotlightgame/static/css/main.a98ca6e0.chunk.css.map",
-    "static/js/2.7b1023d7.chunk.js.LICENSE": "/spotlightgame/static/js/2.7b1023d7.chunk.js.LICENSE",
+    "static/css/main.0474eca0.chunk.css.map": "/spotlightgame/static/css/main.0474eca0.chunk.css.map",
+    "static/js/2.a60a1b70.chunk.js.LICENSE": "/spotlightgame/static/js/2.a60a1b70.chunk.js.LICENSE",
     "static/media/bouncing.gif": "/spotlightgame/static/media/bouncing.ba717b23.gif",
     "static/media/cancel.png": "/spotlightgame/static/media/cancel.f743a430.png",
     "static/media/crown.png": "/spotlightgame/static/media/crown.684af6ea.png",
@@ -20,15 +20,14 @@
     "static/media/gears.png": "/spotlightgame/static/media/gears.4a3b80e7.png",
     "static/media/globe.png": "/spotlightgame/static/media/globe.cf1fad60.png",
     "static/media/map.png": "/spotlightgame/static/media/map.ff05dc4d.png",
-    "static/media/signal.png": "/spotlightgame/static/media/signal.b998ca94.png",
     "static/media/spotlight.png": "/spotlightgame/static/media/spotlight.6f01fba9.png",
     "static/media/star.png": "/spotlightgame/static/media/star.3c794117.png",
     "static/media/star_off.png": "/spotlightgame/static/media/star_off.2a641e87.png"
   },
   "entrypoints": [
     "static/js/runtime-main.91b3574a.js",
-    "static/js/2.7b1023d7.chunk.js",
-    "static/css/main.a98ca6e0.chunk.css",
-    "static/js/main.a91962f0.chunk.js"
+    "static/js/2.a60a1b70.chunk.js",
+    "static/css/main.0474eca0.chunk.css",
+    "static/js/main.216a4d45.chunk.js"
   ]
 }
