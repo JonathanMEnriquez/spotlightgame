@@ -67,7 +67,7 @@ class GameProvider extends Component {
     }
 
     setHints() {
-        const banned = ['USA', 'U.S.A.', 'U.S.', 'US', 'United Stated of America', 'U.K.', 'UK', 'Australia'];
+        const banned = ['USA', 'U.S.A.', 'U.S.', 'US', 'United Stated of America', 'U.K.', 'UK', 'Australia', 'Carribean'];
         const seen = {};
         const guesses = [];
 
@@ -102,26 +102,26 @@ class GameProvider extends Component {
 
     skipImageAndReload() {
         const gamesRef = firebase.database().ref(this.state.user + '/games');
-        const skippedGame = new Game(this.state.img.caption, this.state.img.img_src, 'SKIPPED', true);
+        const skippedGame = new Game(this.state.img.caption, this.state.img.img_src, 'SKIPPED', false, true);
         gamesRef.push(skippedGame);
         this.resetGame();
     }
 
     skipImage() {
         const gamesRef = firebase.database().ref(this.state.user + '/games');
-        const skippedGame = new Game(this.state.img.caption, this.state.img.img_src, 'SKIPPED', true);
+        const skippedGame = new Game(this.state.img.caption, this.state.img.img_src, 'SKIPPED', false, true);
         gamesRef.push(skippedGame);
         this.getNewImage();
     }
-
+x
     getImageInfo() {
-        const entry = data[Math.floor(Math.random() * data.length)];
-        if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
-            return this.getImageInfo();
-        }
-        return entry;
+        // const entry = data[Math.floor(Math.random() * data.length)];
+        // if (this.state.history.find(e => e.imgSrc === entry.img_src)) {
+        //     return this.getImageInfo();
+        // }
+        // return entry;
         //for testing
-        // return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
+        return data.find(e => e.id === '6ee0d4d8fb5cdc629b1541ed5b677391');
     }
 
     getPlayerInfo() {

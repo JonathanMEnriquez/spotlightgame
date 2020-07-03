@@ -6,12 +6,22 @@ import cancel from './img/cancel.png';
 import './LiveGame.css';
 import ButtonGroup from './ButtonGroup';
 import SidePanel from './SidePanel';
+import Dialog from './Dialog';
 
 class LiveGame extends Component {
     state = { 
         btnGroupVisible: false,
         timeout: null,
-        sidePanelVisible: false
+        sidePanelVisible: false,
+        dialogVisible: false
+    }
+
+    showDialog() {
+        this.setState({dialogVisible: true});
+    }
+
+    hideDialog() {
+        this.setState({dialogVisible: false});
     }
 
     makeBtnGrpVisible() {
@@ -44,14 +54,24 @@ class LiveGame extends Component {
     }
 
     render() {
-        const { setToPostgameMode, skipImage, hints } = this.context;
+        const { setToPostgameMode, skipImage, hints, img } = this.context;
         const { sidePanelVisible } = this.state;
         const btnGroupEntries = [
             {alt: 'globe', src: globe, clickHandler: this.toggleSidePanelVisibility.bind(this)},
-            {alt: 'cancel/skip', src: cancel, clickHandler: skipImage}
+            {alt: 'cancel/skip', src: cancel, clickHandler: this.showDialog.bind(this)}
         ]
         return ( 
             <div className="live-game">
+                <Dialog visible={this.state.dialogVisible}
+                    message="Are you sure you want to skip?"
+                    cancelText="Cancel"
+                    onCompleteText="Skip"
+                    onCancel={this.hideDialog.bind(this)}
+                    onComplete={() => {
+                        skipImage();
+                        this.hideDialog();
+                    }}
+                    preCompleteMessage={`Answer: ${img.caption}`} />
                 <SidePanel goToPostGame={setToPostgameMode} closePanel={this.toggleSidePanelVisibility.bind(this)} visible={sidePanelVisible} hints={hints} />
                 <div className="footer-actions">
                     <img src={gears}
